@@ -1,0 +1,14 @@
+{
+  "name": "FlyGO-v4",
+  "app_id": "b464c5dc",
+  "type": "ionic1",
+  "integrations": {
+    "gulp": {}
+  },
+  "watchPatterns": [
+    "scss/**/*",
+    "www/**/*",
+    "!www/lib/**/*",
+    "!www/**/*.map"
+  ]
+}
