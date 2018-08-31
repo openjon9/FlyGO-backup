@@ -1,0 +1,96 @@
+
+<ion-view view-title="清單內容" hide-back-button='true'>
+    <ion-nav-buttons>
+        <button class="button button-clear" ng-click="$ionicGoBack()">
+            <i class="button button-icon ion-ios-arrow-back"></i>
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="secondary">
+        <button class="button button-clear" ng-click="deleteMyList()">
+            <i class="button button-icon ion-ios-trash-outline"></i>
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content>
+
+        <div class="card">
+            <div class="row no-padder">
+                <div class="col wrapper-sm b-r">
+                    <div class="text-x calm">總商品數</div>
+                    <div class="text-xs text-muted">{{shoppingDetail.items.length}}</div>
+                </div>
+
+                <div class="col wrapper-sm">
+                    <div class="text-x calm">總金額</div>
+                    <div class="text-xs text-muted">{{shoppingDetail.total_price | number}}</div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="item">
+            <h3><i class="fa fa-list" aria-hidden="true"></i> {{shoppingDetail.title}}</h3>
+        </div>
+        <div class="item">
+            <div class="item-text-wrap">
+                <!--
+                <li><span class="calm font-bold text-sm">出國時間：</span><span class="text-sm">{{item.go_time}}</span></li>
+                <li><span class="calm font-bold text-sm">返國時間：</span><span class="text-sm">{{item.back_time}}</span></li>
+                <li><span class="calm font-bold text-sm">清單發出時間：</span><span class="text-sm">{{shoppingDetail.start_time}}</span></li>
+                -->
+                <li><span class="calm font-bold text-sm">清單結束時間：</span><span class="text-sm">{{shoppingDetail.end_time}}</span></li>
+                <!--
+                <li><span class="calm font-bold text-sm">公開：</span><span class="text-sm">{{item.ispublic?"公開":"私有"}}</span></li>
+                -->
+                <li><span class="calm font-bold text-sm">是否預先付款：</span><span class="text-sm">{{shoppingDetail.paytype?"是":"否"}}</span></li>
+
+            </div>
+
+            <br>
+
+            <div class="item item-text-wrap">
+                <p>{{shoppingDetail.memo}}</p>
+            </div>
+
+        </div>
+        </div>
+
+        <div class="list">
+            <div class="item item-divider no-bg">商品列表</div>
+            <div class="item item-icon-right"  style="padding-right:80px;" ng-repeat="product in shoppingDetail.items">
+                <!--
+                item-avatar item-text-wrap
+                <img ng-src="{{product.pic}}" width="50" height="50" alt="">
+                -->
+
+                <h3 class="font-bold" ng-click="updateShopNum(product.qty, product.item_id)">{{product.title}} x <button ion-button style="border:1px solid #efefef;border-radius: 20px;">{{product.qty}}</button> </h3>
+                <div class="text-sm text-muted" ng-click="updateShopNum(product.qty, product.item_id)">
+
+                    <span class="m-r">
+                        {{product.currency.toUpperCase()}}: {{product.price | number}}
+                    </span>
+
+                    <span class="b-l m-r padder">
+                        小計：{{product.subtotal | number:0}}
+                    </span>
+                </div>
+                <div class="text-sm text-muted" ng-click="updateShopNum(product.qty, product.item_id)">
+
+                    <span class="m-r">
+                        NTD: {{product.eprice | number}}
+                    </span>
+
+                    <span class="b-l m-r padder">
+                        小計：{{product.esubtotal | number:0}}
+                    </span>
+                </div>
+
+                <i class="icon icon ion-ios-close-outline secondary" ng-click="deleteFromList({product: product, idx: $index})"></i>
+                <i class="icon ion-ios-information-outline calm"  ui-sref="tab.productDetail( { pno: product.pno } )"></i>
+            </div>
+        </div>
+
+    </ion-content>
+
+</ion-view>

@@ -1,0 +1,161 @@
+<ion-view hide-back-button='true'>
+    <ion-nav-title> {{detail.title}} </ion-nav-title>
+
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" ng-click="$ionicGoBack()">
+            <i class="button button-icon ion-ios-arrow-back"></i>
+        </button>
+    </ion-nav-buttons>
+
+    <ion-nav-buttons side="right">
+        <button class="button button-clear" ng-click="showAddToCartPopup()">
+            <i class="button button-icon ion-android-add"></i>
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content class="has-footer">
+
+
+            <!--
+            <div class="img-full">
+                <img src="img/dish-2.png">
+            </div>
+            -->
+
+            <ion-slide-box ng-show="pic_loaded">
+                <ion-slide ng-repeat="image in detail.pic">
+
+                        <img ng-src="{{image.path}}" style="width:300px;height:300px;margin:auto;display:block" >
+
+                </ion-slide>
+            </ion-slide-box>
+
+<!--
+        <ion-slide-box show-pager="true"  on-slide-changed="slideChanged(index)">
+            <ion-slide ng-repeat="group in groups">
+                <ion-content >
+                    <div ng-if="$index >= (currentSlide-1) && $index <= (currentSlide+1)">
+                        Group {{group.name}}
+                        </ion-item>
+                        <ion-item class="item-accordion"
+                                  ng-repeat="item in group.items">
+                            {{item}}
+                            <img src="http://placehold.it/350x150">
+                        </ion-item>
+                    </div>
+                </ion-content>
+            </ion-slide>
+        </ion-slide-box>
+        -->
+            <!--
+            <ion-slide-box on-slide-changed="slideHasChanged($index)">
+                <ion-slide ng-repeat="pic in detail.pic" class="text-center">
+                    <div class="slider-images" style="height:300px;width:300px;background:url('{{pic.path}}') no-repeat;background-position: center;"></div>
+
+                </ion-slide>
+            </ion-slide-box>
+            -->
+            <!-- <img class="slider-images" ng-src="{{ pic.path }}"/> -->
+
+
+
+            <div class="card">
+                <div class="row no-padder">
+                    <div class="col wrapper-sm b-r">
+                        <div class="text-x calm">{{detail.currency.toUpperCase()}}</div>
+                        <div class="text-xs text-muted">{{detail.price}}</div>
+                    </div>
+                    <div class="col wrapper-sm">
+                        <div class="text-x calm">NTD</div>
+                        <div class="text-xs text-muted">{{detail.eprice}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="item">
+                    <h3><i class="fa fa-shopping-bag" aria-hidden="true"></i> {{detail.title}} </h3>
+                </div>
+                <div class="item">
+                    <div class="item-text-wrap">
+                        <li><span class="calm font-bold text-sm">品牌：</span><span class="text-sm">{{detail.brand}}</span></li>
+                        <li><span class="calm font-bold text-sm">類別：</span><span class="text-sm">{{detail.type1}} / {{detail.type2}}</span></li>
+                        <li><span class="calm font-bold text-sm">尺寸：</span><span class="text-sm">{{detail.size}}</span></li>
+                        <li><span class="calm font-bold text-sm">顏色：</span><span class="text-sm">{{detail.color}}</span></li>
+                        <li><span class="calm font-bold text-sm">產地：</span><span class="text-sm">{{detail.country}}</span></li>
+                        <li><span class="calm font-bold text-sm">商店：</span><span class="text-sm">{{detail.buyplace}}</span></li>
+                        <li><span class="calm font-bold text-sm">營業時間：</span><span class="text-sm">{{detail.business_hours}}</span></li>
+                        <li><span class="calm font-bold text-sm">保固資訊：</span><span class="text-sm">{{detail.expire}}</span></li>
+                    </div>
+                    <br>
+                    <div class="item item-text-wrap" ng-bind-html="detail.content | unsafe">
+
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+<!--
+            <div class="wrapper-sm b-b b-light">
+
+            </div>
+-->
+        <!--
+            <div class="item tabs tabs-secondary tabs-icon-left m-n b-none">
+                <a class="tab-item" href="" ng-click="showAddToCartPopup()">
+                    <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                    加入清單
+                </a>
+                <a class="tab-item" href="">
+                    <i class="fa fa-heart" aria-hidden="true"></i>
+                    覺得喜歡
+                </a>
+            </div>
+
+
+            <div class="b-b b-light"></div>
+-->
+
+            <!-- Comments -->
+<!--
+            <div class="wrapper-sm l-h clear" ng-repeat="i in [0,1,2]">
+                <img src="" random-avatar alt="" class="thumb-xs rounded pull-left m-r-sm">
+                <div class="clear b-b b-light">
+                    <div class="m-b-sm">
+                        <div class="font-bold">于文文</div>
+                        <div class="text-sm text-muted">2 分鐘</div>
+                    </div>
+
+                    <p class="">知是解層爭到義那經……者本結的我...</p>
+
+                    <div class="text-muted m-b-xs">
+            <span class="m-r">
+              <i class="icon ion-thumbsup"></i>
+              讚
+            </span>
+                        <span class="m-r">
+              <i class="icon ion-chatbox"></i>
+              回覆
+            </span>
+                        <span class="b-l m-r padder">
+              3 讚
+            </span>
+                    </div>
+                </div>
+            </div>
+-->
+    </ion-content>
+<!--
+    <ion-footer-bar class="item-input-inset" keyboard-attach>
+        <label class="item-input-wrapper">
+            <input type="search" placeholder="新增一筆留言...">
+        </label>
+        <button class="button button-clear">
+            送出
+        </button>
+    </ion-footer-bar>
+    -->
+</ion-view>

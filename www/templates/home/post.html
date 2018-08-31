@@ -1,0 +1,436 @@
+<ion-view view-title="{{drama.title}}">
+<!--
+  <ion-nav-buttons side="secondary">
+    <button class="button button-icon ion-ios-more"></button>
+  </ion-nav-buttons>
+-->
+
+  <ion-content>
+
+    <h6 class="product-title" style="width:100%;border:0;height:50px;margin:10px;">
+      <img src="img/adam.png" style="float:left; margin:0 10px 0 0;height:50px;width:50px;border:0;border-radius:100%;">
+      <span style="float:left;margin:5px;height:50px;width:250px;border:0px solid red;">
+        <h6 style="height:25px;line-height:20px;margin:0;font-size:18px;">{{drama.author}}</h6>
+        <h6 style="height:25px;line-height:20px;font-size:14px;margin:0;">{{drama.createtime}}</h6>
+      </span>
+    </h6>
+    <img ng-show="drama.cover_pic" class="full-image" src="{{ drama.cover_pic}}">
+    <div style="margin:20px;">
+      <h5>{{ drama.country_name }} / {{ drama.place }}</h5>
+      <p ng-bind-html="drama.content"></p>
+    </div>
+
+
+    <div class="timeline-block">
+
+
+      <iframe
+              width="100%"
+              height="250"
+              frameborder="0" style="border:0"
+              src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCvTRJ2AR3Dl5iMKXH3-f4fHnsIGWjmTis&zoom=16&region=tw&q=韓國首爾中區明洞">
+      </iframe>
+      <!--
+            <div class="header" style="background:url('./img/travel/t1/d1/6.jpg');">
+              <div class="color-overlay">
+                <div class="day-number">4</div>
+                <div class="date-right">
+                  <div class="day-name">07/06 - 07/09</div>
+                  <div class="month">July 2017</div>
+                </div>
+              </div>
+              <div class="actionbutton">+</div>
+            </div>
+      -->
+      <h4 style="margin:20px;">行程總表</h4>
+      <div class="timeline">
+        <ul>
+          <li ng-repeat="schedule in drama.schedule">
+            <div class="bullet" style="background:none;"></div>
+            <div class="time" style="margin:0;">
+
+              <p style="margin:0;font-size:16px;font-weight:900;">DAY {{ $index + 1}}</p>
+            </div>
+            <div class="desc">
+              <h3>{{ schedule.date }}</h3>
+              <h4><span ng-repeat="path in schedule.location track by $index"> {{ path }}<b ng-if="schedule.location.length != ($index+1)"> > </b></span></h4>
+            </div>
+          </li>
+          <!--
+          <li>
+            <div class="bullet" style="background:none;"></div>
+            <div class="time" style="margin:0;">
+              <p style="margin:0;">07/07</p>
+              <p style="margin:0;font-size:16px;font-weight:900;">DAY 2</p>
+            </div>
+            <div class="desc">
+              <h3></h3>
+              <h4>ISAAC TOAST早餐店 > 南山谷韓屋村 >
+                元鱈魚湯 > 韓國戰爭紀念館 > ITA-KO
+                PASTE CAFE > 明洞美妝、服飾、鞋店</h4>
+            </div>
+          </li>
+          <li>
+            <div class="bullet" style="background:none;"></div>
+            <div class="time" style="margin:0;">
+              <p style="margin:0;">07/08</p>
+              <p style="margin:0;font-size:16px;font-weight:900;">DAY 3</p>
+            </div>
+            <div class="desc">
+              <h3></h3>
+              <h4>BEANSBINS COFFEE > 廣藏市場 > 景福
+                宮 > 三清洞 > 樂天超市</h4>
+            </div>
+          </li>
+          <li>
+            <div class="bullet" style="background:none;"></div>
+            <div class="time" style="margin:0;">
+              <p style="margin:0;">07/09</p>
+              <p style="margin:0;font-size:16px;font-weight:900;">DAY 4</p>
+            </div>
+            <div class="desc">
+              <h3></h3>
+              <h4>韓國仁川國際機場 > 臺灣</h4>
+            </div>
+          </li>
+-->
+        </ul>
+      </div>
+
+      <div ng-repeat="item in drama.items">
+        <div class="header">
+          <div class="color-overlay">
+            <!-- <div class="day-number">{{ $index + 1 }}</div> -->
+            <div class="date-right">
+              <div class="day-name">Day {{ $index + 1}}</div>
+              <div class="month">{{item.date}}</div>
+            </div>
+          </div>
+        <!-- <div class="actionbutton">+</div> -->
+        </div>
+
+        <div class="timeline">
+          <ul>
+            <li ng-repeat="loc in item.location">
+              <div class="bullet"><img ng-src="img/weather/{{loc.weather}}.png" style="width:24px;"></div>
+              <div class="time">{{loc.starttime}}</div>
+              <div class="desc">
+                <h3>{{loc.name}}</h3>
+                <h4 ng-bind-html="loc.content"></h4>
+
+                <div>
+                  <div class="things">
+                    <img ng-src="{{pics.pic}}" ng-repeat="pics in loc.pic_info" alt="" />
+                  </div>
+                </div>
+
+
+
+
+                <div class="desc" ng-if="loc.address">
+                  <h3>地址：</h3>
+                  <h4 ng-bind-html="loc.address"></h4>
+                </div>
+
+                <div class="desc" ng-if="loc.gps">
+                  <h3>GPS：</h3>
+                  <h4>{{loc.gps}}</h4>
+                </div>
+
+                <div class="desc" ng-if="loc.tel">
+                  <h3>公休日：</h3>
+                  <h4>{{loc.tel}}</h4>
+                </div>
+
+                <div class="desc" ng-if="loc.email">
+                  <h3>e-mail：</h3>
+                  <h4>{{loc.email}}</h4>
+                </div>
+
+                <div class="desc" ng-if="loc.holiday">
+                  <h3>公休日：</h3>
+                  <h4>{{loc.holiday}}</h4>
+                </div>
+
+                <div class="desc" ng-if="loc.opentime">
+                  <h3>營業時間：</h3>
+                  <h4>{{loc.opentime}}</h4>
+                  <h4>{{loc.starttime}} - {{loc.endtime}}</h4>
+                </div>
+
+                <div class="desc" ng-if="loc.traffic">
+                  <h3>交通方式：</h3>
+                  <h4>{{loc.traffic}}</h4>
+                </div>
+
+                <div class="desc" ng-if="loc.traffictime">
+                  <h3>交通工具：</h3>
+                  <h4>{{loc.traffictime}}</h4>
+                </div>
+
+                <div class="desc" ng-if="loc.baggage">
+                  <h3>攜帶物品：</h3>
+                  <h4>{{loc.baggage}}</h4>
+                </div>
+
+                <div class="desc" ng-if="loc.size">
+                  <h3>行李尺寸：</h3>
+                  <h4>{{loc.size}}</h4>
+                </div>
+
+                <div class="desc" ng-if="loc.weight">
+                  <h3>重量：</h3>
+                  <h4>{{loc.weight}} kg</h4>
+                </div>
+
+                <div class="desc" ng-if="loc.social">
+                  <h3>社群：</h3>
+                  <h4>{{loc.social}}</h4>
+                </div>
+              </div>
+            </li>
+
+            <!--
+              address:"大阪府大阪市北區大淀中1-1-88"
+              baggage:""
+              content:"入場費：700日圓"
+              email:""
+              endtime:"16:00:00"
+              gps:""
+              holiday:""
+              name:"梅田．空中庭園展望台．藍天大廈"
+              opentime:"10：00-22：30（最終入場時間22：00）※根據季節會有變更"
+              pic_info:[{…}]
+              size:""
+              slid:99
+              social:""
+              starttime:"14:00:00"
+              tel:""
+              traffic:"大阪站、地鐵梅田站、阪急梅田站徒步均約8分"
+              traffictime:""
+              weather:0
+              weight:0
+              -->
+          <!--
+            <li>
+              <div class="bullet"><img src="img/weather/2.png" style="width:24px;"></div>
+              <div class="time">16:30 pm</div>
+              <div class="desc">
+                <h3>韓國仁川國際機場</h3>
+                <h4>離開臺灣，一行人終於抵達韓國啦!
+                  天氣真是不錯，最讓人感受到異國氛圍的，當然
+                  是周遭充滿了韓文的指標和不熟悉的語言。
+                  首先，前往飯店!</h4>
+                <div class="things">
+                  <img src="./img/travel/1.jpg" alt="" />
+                  <img src="./img/travel/2.jpg" alt="" />
+                  <img src="./img/travel/3.jpg" alt="" />
+                </div>
+                <h3>交通工具：</h3>
+                <h4>機場鐵路(A'REX)到首爾地鐵站서울424後，再轉搭地鐵4號線到明洞站,명동역426</h4>
+                <h3>花費時間：</h3>
+                <h4>25 min</h4>
+              </div>
+            </li>
+            <li>
+              <div class="bullet"><img src="img/weather/3.png" style="width:24px;"></div>
+              <div class="time">17:10 pm</div>
+              <div class="desc">
+                <h3>首爾車站</h3>
+                <h4>放完行李休息片刻，離開飯店，晚餐決定出發前
+                  往期待已久的姜虎東白丁烤肉(강호동백정)，也
+                  是抵達韓國後第一波享受韓國美食的開始，一群
+                  吃貨來囉!</h4>
+                <div class="things">
+                  <img src="./img/travel/4.jpg" alt="" />
+                  <img src="./img/travel/5.jpg" alt="" />
+                  <img src="./img/travel/6.jpg" alt="" />
+                </div>
+                <h3>營業時間：</h3>
+                <h4>禮拜一～禮拜日 早上11:00~淩晨2:00</h4>
+                <h3>聯絡資訊：</h3>
+                <h4>Tel:+82 2-777-6780</h4>
+                <h3>行李裝備</h3>
+                <h4>牙刷、牙膏、盥洗衣物、保健食品、
+                  室內拖鞋、小背包、變壓器</h4>
+                <h3>行李箱尺寸：</h3>
+                <h4>28寸</h4>
+                <h3>總重量：</h3>
+                <h4>11公斤</h4>
+              </div>
+
+            </li>
+            <li>
+              <div class="bullet"><img src="img/weather/4.png" style="width:24px;"></div>
+              <div class="time">9pm</div>
+              <div class="desc">
+                <h3>明洞姜虎東白丁烤肉</h3>
+                <h4>吃宵夜的好地方～～</h4>
+                <div class="things">
+                  <img src="https://i1.wp.com/boo2k.com/wp-content/uploads/2017/05/IMG_8776.jpg?w=860&ssl=1" alt="" />
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="bullet"><img src="img/weather/4.png" style="width:24px;"></div>
+              <div class="time">11am</div>
+              <div class="desc">
+                <h3>明洞街</h3>
+                <h4>想睡了～～</h4>
+                <div class="things">
+                  <img src="https://exp.cdn-hotels.com/hotels/6000000/5220000/5213600/5213574/5213574_104_z.jpg?impolicy=q60" alt="" />
+                </div>
+              </div>
+            </li>
+            -->
+          </ul>
+        </div>
+      </div>
+<!--
+      <div class="header">
+        <div class="color-overlay">
+          <div class="day-number">7</div>
+          <div class="date-right">
+            <div class="day-name">Monday</div>
+            <div class="month">July 2017</div>
+          </div>
+        </div>
+       </div>
+        <!-- <div class="actionbutton">+</div> -->
+
+<!--
+      <div class="timeline">
+        <ul>
+          <li>
+            <div class="bullet"><img src="img/weather/05.png" style="width:24px;"></div>
+            <div class="time">9am</div>
+            <div class="desc">
+              <h3>ISAAC TOAST早餐店</h3>
+              <h4>起床囉～～～</h4>
+            </div>
+          </li>
+          <li>
+            <div class="bullet"><img src="img/weather/06.png" style="width:24px;"></div>
+            <div class="time">11am</div>
+            <div class="desc">
+              <h3>南山谷韓屋村</h3>
+              <h4>Hahaha~~~~超級吃貨來囉～～</h4>
+              <div class="big-photo">
+                <img src="https://i2.wp.com/boo2k.com/wp-content/uploads/2016/07/20160706-IMG_9088.jpg?resize=800%2C484&ssl=1" alt="" />
+              </div>
+            </div>
+
+          </li>
+          <li>
+            <div class="bullet"><img src="img/weather/07.png" style="width:24px;"></div>
+            <div class="time">...</div>
+            <div class="desc">
+              <h3>...</h3>
+              <h4>...</h4>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+-->
+      <!--
+       <div class="">
+         <div class="wrapper-sm l-h clear">
+           <img src="" random-avatar alt="" class="thumb-sm rounded pull-left m-r-sm">
+           <div class="clear">
+             <div class="font-bold">于文文</div>
+             <div class="text-sm text-muted">首爾, 明洞, 南山谷</div>
+             <div class="text-sm text-muted">2 分鐘</div>
+           </div>
+         </div>
+
+         <div class="wrapper-sm">
+           <p>
+             往了小長；議終生我清離球白……食動個家大苦產多氣客者你的。無岸千麼學明孩趣演只……重上國，能公個公動新清效此中會勢難落現人一一教似應點代牛我。價球經機劇開而母準命即見理型不不，這人書集裝，技美語施黑：的環權媽我光；十放係影電房工年相辦以自樂……外部美字，位了眼腳人體供到去長多積說那導和了情，請觀滿因以也的成友，下的時媽不明更功在手關？無的能斯土本，便山成回麼，戰友賣素上：分標造：多以馬的為。知的國驚；和山易家要裡交案。期找子於人斷大特！已始本市了著城沒地藝為得服這子些整劇生信好之著投公靜重我在要對值我任存自，經山視了著士產們是省去電果意說習廣次？體有故最如有難界，待合約部運她。
+           </p>
+         </div>
+
+         <div class="img-full">
+           <img src="img/photo2.jpeg">
+         </div>
+-->
+      <!--
+         <div class="wrapper-sm b-b b-light">
+           <a href="" class="subdued">1 讚</a>·
+           <a href="" class="subdued">5 留言</a>
+         </div>
+
+         <div class="item tabs tabs-secondary tabs-icon-left m-n b-none">
+           <a class="tab-item" href="">
+             <i class="icon ion-thumbsup"></i>
+             讚
+           </a>
+           <a class="tab-item" href="">
+             <i class="icon ion-chatbox"></i>
+             留言
+           </a>
+           <a class="tab-item" href="">
+             <i class="icon ion-share"></i>
+             分享
+           </a>
+         </div>
+-->
+         <div class="b-b b-light"></div>
+   <!--
+      <!-- Likers -->
+      <!--
+      <div class="item item-divider no-bg b-none ">Likes</div>
+      <div class="likers wrapper-sm">
+        <img class="thumb-xs rounded m-r-sm pull-left" src="img/adam.jpg" random-avatar alt="" ng-repeat="i in [0,1,2,3]">
+        <span class="thumb-xs rounded b b-light more-liker">
+          <i class="icon ion-more"></i>
+        </span>
+      </div>
+-->
+
+      <!-- Comments -->
+      <!--
+      <div class="item item-divider no-bg b-none ">Comments</div>
+      -->
+
+      <!--
+      <div class="wrapper-sm l-h clear" ng-repeat="i in [0,1,2]">
+        <img src="" random-avatar alt="" class="thumb-xs rounded pull-left m-r-sm">
+        <div class="clear b-b b-light">
+          <div class="m-b-sm">
+            <div class="font-bold">于文文</div>
+            <div class="text-sm text-muted">首爾, 明洞, 南山谷</div>
+            <div class="text-sm text-muted">2 分鐘</div>
+          </div>
+
+          <p class="">知是解層爭到義那經……者本結的我...</p>
+
+          <div class="text-muted m-b-xs">
+            <span class="m-r">
+              <i class="icon ion-thumbsup"></i>
+              讚
+            </span>
+            <span class="m-r">
+              <i class="icon ion-chatbox"></i>
+              回覆
+            </span>
+            <span class="b-l m-r padder">
+              3 讚
+            </span>
+          </div>
+        </div>
+      </div>
+      -->
+    </div>
+  </ion-content>
+<!--
+  <ion-footer-bar class="item-input-inset" keyboard-attach>
+    <label class="item-input-wrapper">
+      <input type="search" placeholder="新增一筆留言...">
+    </label>
+    <button class="button button-clear">
+      送出
+    </button>
+  </ion-footer-bar>
+  -->
+</ion-view>

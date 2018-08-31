@@ -1,0 +1,70 @@
+<ion-view class="categories-view" hide-nav-bar="true">
+
+  <ion-header-bar class="bar-calm ">
+    <h1 class="title">商品清單</h1>
+
+    <button class="button button-icon ion-android-funnel" ng-click="showFilterPopup()"></button>
+
+    <!--
+    <label class="item-input-wrapper light-bg">
+            <i class="icon ion-ios-search placeholder-icon"></i>
+            <input type="search" placeholder="以關鍵字搜尋">
+      </label>
+
+-->
+<!--
+    <button class="button button-icon ion-grid" ng-click="toggleMenu()"></button>
+-->
+  </ion-header-bar>
+
+<!--
+  <div class="bar bar-subheader" horizontal layout center>
+    <img src="img/adam.jpg" alt="" class="thumb-xs rounded m-l-sm m-r-sm">
+    <div class="text-muted" flex ng-click="openPost()">分享您的劇本</div>
+    <button class="button button-icon ion-ios-camera-outline text-muted" ng-click="openPost()"></button>
+  </div>
+-->
+
+  <ion-content class="bg-muted"> <!-- has-subheader -->
+    <!--
+      <ion-refresher on-refresh="refresh()" pulling-icon="ion-chevron-up"></ion-refresher>
+    -->
+
+    <div class="row categories-outer">
+      <div ng-repeat="item in productList" class="col col-50 category-item-outer">
+        <div class="category-item-wrapper">
+          <div class="category-item-content" style="background:url('{{item.pic[0].path}}') no-repeat;background-position: center; -moz-background-size:cover;-webkit-background-size:cover;-o-background-size:cover;background-size:cover;">
+            <i class="icon ion-android-add placeholder-icon"  ng-click="showAddToCartPopup({pno: item.pno, title:item.title, price: item.price, currency: item.currency, eprice: item.eprice})" style="float:right;padding:2px 4px;font-size:30px;background:rgb(211,126,136);color:#fff; "></i>
+            <p class="category-title"  ui-sref="tab.productDetail( { pno: item.pno, title: item.title, price: item.price } )" style="position:relative;border-radius:4px; overflow: hidden; white-space:nowrap;">
+              {{item.title}}
+            </p>
+          </div>
+        </div>
+        <div class="item tabs tabs-secondary tabs-icon-left m-n">
+          <!--
+          <a class="tab-item" href="">
+            <i class="fa fa-cart-arrow-down fa-2x" aria-hidden="true"></i>
+            加入清單
+          </a>
+          <a class="tab-item" href="">
+            <i class="fa fa-heart-o fa-2x" aria-hidden="true"></i>
+            覺得喜歡
+          </a>
+          -->
+          <span class="tab-item">
+            {{item.currency.toUpperCase()}}: {{item.price}}
+          </span>
+          <span class="tab-item">
+            NTD: {{item.eprice}}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <ion-infinite-scroll on-infinite="nextPage()" distance="0%">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+
+  </ion-content>
+</ion-view>

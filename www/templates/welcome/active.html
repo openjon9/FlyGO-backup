@@ -1,0 +1,24 @@
+<ion-modal-view class="bg-gradient">
+  <ion-header-bar class="no-bg b-none bar-no-border">
+    <h1 class="title light">輸入驗證碼，要求認證</h1>
+    <button class="button button-icon button-clear button-light ion-android-close" ng-click="closeActive()"></button>
+  </ion-header-bar>
+
+  <ion-content class="padding">
+    <div class="list card">
+      <label class="item item-input">
+        <span class="input-label">手機號碼</span>
+        <input type="text" disabled ng-model="user.phone">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">驗證碼</span>
+        <input type="text" focus-me ng-model="user.regcode">
+      </label>
+    </div>
+
+    <button class="button button-block button-outline button-light" ng-click="activeRegister()"><b>確定</b></button>
+    <button class="button button-block button-outline button-light" ng-click="reSendActive()"><b>重發驗證碼</b></button>
+
+
+  </ion-content>
+</ion-modal-view>

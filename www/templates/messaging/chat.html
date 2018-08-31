@@ -1,0 +1,41 @@
+<ion-view view-title="{{talkTo}}" hide-back-button='true'>
+  <ion-nav-buttons>
+    <button class="button button-clear" ui-sref="tab.messaging">
+      <i class="button button-icon ion-ios-arrow-back"></i>
+    </button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="secondary">
+    <img src="img/adam.png" alt="" class="thumb-xs rounded b b-light">
+  </ion-nav-buttons>
+
+  <ion-content delegate-handle="userMessageScroll">
+    <!-- Chat bubbles -->
+    <div class="list chat-bubble">
+      <div class="item item-avatar" ng-class="item.acc==chatProfile.acc?'me':'friend'" href="#" ng-repeat="item in messages">
+        <img ng-src="img/adam.png" ng-if="item.acc!=chatProfile.acc">
+        <span class="message-status">{{item.acc==chatProfile.acc?'':chatProfile.talkacc}}</span>
+        <div class="bubble" ng-class="{'bubble-image': item.type == 'image'}">
+          <i class="icon-tail"></i>
+          <span class="content" ng-if="item.type !== 'image'" ng-bind-html="item.info.msg | nl2br"></span>
+          <img ng-src="{{item.info.msg}}" alt="" ng-if="item.type == 'image'">
+        </div>
+        <span class="message-status">{{item.time | date: 'yyyy/MM/dd HH:mm:ss'}}</span>
+      </div>
+    </div>
+  </ion-content>
+
+  <ion-footer-bar class="item-input-inset" keyboard-attach elastic>
+
+    <!--
+    <div class="footer-btn-wrap">
+      <button class="button button-clear button-icon ion-chatbox-working footer-btn"></button>
+    </div>
+    -->
+    <label class="item-input-wrapper no-bg">
+      <textarea rows="1" msd-elastic placeholder="留個言吧" id="type-area" ng-model="message"></textarea>
+    </label>
+    <div class="footer-btn-wrap">
+      <button class="button button-clear button-calm footer-btn" ng-click="sendText()" ng-disabled="message.length == 0">送出</button>
+    </div>
+  </ion-footer-bar>
+</ion-view>

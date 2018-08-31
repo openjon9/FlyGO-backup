@@ -1,0 +1,26 @@
+<ion-modal-view class="bg-gradient">
+  <ion-header-bar class="b-none no-bg bar-no-border">
+    <h1 class="title light"></h1>
+    <button class="button button-icon button-clear button-light ion-android-close" ng-click="closeLogin()"></button>
+  </ion-header-bar>
+
+  <ion-content class="padding">
+    <div class="list card">
+      <label class="item item-input">
+        <span class="input-label">電話號碼</span>
+        <input type="text"  disabled ng-model="user.phone">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">帳號</span>
+        <input type="text" focus-me ng-model="user.account">
+      </label>
+      <label class="item item-input">
+      <span class="input-label">密碼</span>
+        <input type="password" ng-model="user.password">
+      </label>
+    </div>
+
+    <button class="button button-block button-outline button-light" ng-click="accountAdd()"><b>註冊</b></button>
+
+  </ion-content>
+</ion-modal-view>

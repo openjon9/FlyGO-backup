@@ -1,0 +1,126 @@
+<ion-view hide-nav-bar="true">
+
+
+
+  <ion-header-bar class="bar-calm ">
+    <h1 class="title">劇本清單</h1>
+    <!-- header class item-input-inset bar-no-border -->
+    <!--
+    <label class="item-input-wrapper light-bg">
+      <i class="icon ion-ios-search placeholder-icon"></i>
+      <input type="search" placeholder="以關鍵字搜尋">
+
+    </label>
+-->
+    <button class="button button-icon ion-android-funnel" ng-click="showFilterPopup()"></button>
+
+<!--
+    <button class="button button-icon ion-grid" ng-click="toggleMenu()"></button>
+-->
+  </ion-header-bar>
+
+
+  <div class="bar bar-subheader" horizontal layout center>
+    <img src="img/adam.jpg" alt="" class="thumb-xs rounded m-l-sm m-r-sm">
+    <div class="text-muted" flex ng-click="openPost()">分享您的劇本</div>
+    <button class="button button-icon ion-ios-camera-outline text-muted" ng-click="openPost()"></button>
+  </div>
+
+
+
+<ion-content class="has-subheader bg-muted"><!-- has-subheader -->
+
+
+    <ion-refresher on-refresh="prePage()" pulling-icon="ion-chevron-up"></ion-refresher>
+
+    <div class="list card" ng-repeat="item in dramaList" ui-sref="tab.post({id: item.list_id})">
+      <!--
+      <div class="wrapper-sm b-b b-light">
+        <b>馬庫</b> 對這篇按讚
+      </div>
+      -->
+
+      <div class="wrapper-sm l-h clear">
+        <img src="" random-avatar alt="" class="thumb-md rounded pull-left m-r-sm">
+        <div class="clear">
+          <div class="font-bold">{{item.author}}</div>
+          <div class="text-sm text-muted">{{item.country_name}} / {{ item.place}}</div>
+          <div class="text-sm text-muted">{{item.createtime}}</div>
+        </div>
+      </div>
+
+      <div class="wrapper-sm">
+        <p class="font-bold">{{item.title}}</p>
+        <p ng-bind-html="item.brief">
+
+
+        </p>
+        <span class="text-muted">...更多</span>
+      </div>
+
+      <div class="img-full">
+        <img ng-src="{{item.cover_pic}}" style="background-size: cover;">
+      </div>
+      <!--
+      <div class="img-full" ng-if="$index%2 == 0">
+        <img src="img/photo2.jpg">
+      </div>
+      -->
+
+      <!-- Shared post -->
+      <!--
+      <div class="wrapper-sm" ng-if="$index%2 == 1">
+        <div class="b b-light">
+          <div class="img-full">
+            <img src="img/photo.jpg">
+          </div>
+
+          <div class="wrapper-xs">
+            <div class="font-bold">Download this app</div>
+            <div class="text-sm text-muted">Handy tool to convert CVs</div>
+          </div>
+        </div>
+      </div>
+       -->
+
+      <!--
+      <div class="wrapper-sm">
+        <a href="" class="subdued">1 讚</a>·
+        <a href="" class="subdued">5 留言</a>
+      </div>
+-->
+      <!--
+      <div class="item tabs tabs-secondary tabs-icon-left m-n">
+        <a class="tab-item" href="">
+          <i class="icon ion-thumbsup"></i>
+          讚
+        </a>
+        <a class="tab-item" href="">
+          <i class="icon ion-chatbox"></i>
+          留言
+        </a>
+        <a class="tab-item" href="">
+          <i class="icon ion-share"></i>
+          分享
+        </a>
+      </div>
+-->
+      <!-- Latest comment -->
+      <!--
+      <div class="wrapper-sm l-h clear">
+        <img src="" random-avatar alt="" class="thumb-xs rounded pull-left m-r-sm">
+        <div class="clear">
+          <span class="font-bold">Jesse Jane 1</span> This could be a good example!
+        </div>
+      </div>
+      -->
+    </div>
+
+
+    <ion-infinite-scroll on-infinite="nextPage()" distance="0%">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+
+  </ion-content>
+</ion-view>

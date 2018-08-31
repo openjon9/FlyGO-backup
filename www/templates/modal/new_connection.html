@@ -1,0 +1,38 @@
+<ion-modal-view >
+	<!--
+	<ion-header-bar class="bar-calm">
+		<button class="button button-clear" ng-click="closeAdd()">
+			<i class="icon ion-android-close"></i>
+		</button>
+		<div class="h1 title">尋找朋友</div>
+	</ion-header-bar>
+	-->
+	<ion-header-bar class="bar-calm item-input-inset bar-no-border">
+		<button class="button button-clear" ng-click="closeAdd()">
+			<i class="icon ion-android-close"></i>
+		</button>
+
+		<label class="item-input-wrapper light-bg">
+			<i class="icon ion-ios-search placeholder-icon"></i>
+			<input type="search" ng-model="search.friendsName" placeholder="帳號名稱">
+		</label>
+
+		<!-- ngIf: !searchFocus --><button class="button button-icon ion-ios-search" ng-if="!searchFocus" ng-click="searchFriends()"></button><!-- end ngIf: !searchFocus -->
+
+
+		<!-- <button class="button button-clear" ng-show="searchFocus" ng-click="searchFocus = false; hideKeyboard()">取消</button> -->
+	</ion-header-bar>
+
+	<ion-content>
+		<div class="list">
+		  	<div class="item item-divider no-bg">列表{{search.list.length}}</div>
+			<div class="item item-avatar item-icon-right" ng-repeat="list in search.searchList">
+				<img src="img/adam.png" random-avatar alt="">
+				<div class="font-bold">{{list.name}}</div>
+				<div class="text-sm text-muted">{{list.acc}}</div>
+
+				<i class="icon ion-ios-plus-outline calm" ng-click="addFriend(list.id, $index)"></i>
+			</div>
+		</div>
+	</ion-content>
+</ion-modal-view>

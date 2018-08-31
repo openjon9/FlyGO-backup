@@ -1,0 +1,26 @@
+<ion-modal-view class="bg-gradient">
+  <ion-header-bar class="no-bg b-none bar-no-border">
+    <h1 class="title light">輸入手機號碼，要求認證</h1>
+    <button class="button button-icon button-clear button-light ion-android-close" ng-click="closeRegister()"></button>
+  </ion-header-bar>
+
+  <ion-content class="padding">
+    <div class="list card">
+      <label class="item item-input">
+        <span class="input-label">手機號碼</span>
+        <input type="text" focus-me ng-model="user.phone">
+      </label>
+    </div>
+
+    <button class="button button-block button-outline button-light" ng-click="userRegister()"><b>加入</b></button>
+    <p class="light text-center">加入即認同我們的使用條款和隱私權政策</p>
+    <div class="light row">
+      <div class="col">
+        <button class="button button-clear button-light" ng-click="openTerms()">使用條款</button>
+      </div>
+      <div class="col text-right">
+        <button class="button button-clear button-light" ng-click="openPrivacy()">隱私權政策</button>
+      </div>
+    </div>
+  </ion-content>
+</ion-modal-view>

@@ -1,0 +1,39 @@
+<span class="popup-product-title"></span>
+
+<div class="row item-input-inset">
+  <div class="col col-40 input-label">
+    <label>清單名稱</label>
+  </div>
+  <div class="col col-60 input-label">
+    <label class="item-input-wrapper">
+      <input type="search" ng-model="addList.title" placeholder="請輸入清單名稱">
+    </label>
+  </div>
+</div>
+
+<div class="row product-options">
+  <div class="col col-40 input-label">
+    <label>付款方式</label>
+  </div>
+  <div class="col col-60 select-option-wrapper">
+    <select ng-model="addList.pay" ng-options="detail.key as detail.value for detail in payMethod">
+
+      <!--
+      <option value="0" ng-selected="true">無</option>
+      <option value="1">預先付款</option>
+      <option value="2">貨到付款</option>
+      -->
+    </select>
+  </div>
+</div>
+
+<div class="row item-input-inset">
+  <div class="col col-40 input-label">
+    <label>清單備註</label>
+  </div>
+  <div class="col col-60 input-label">
+    <label class="item-input-wrapper">
+      <input type="search" ng-model="addList.note" placeholder="清單備註">
+    </label>
+  </div>
+</div>

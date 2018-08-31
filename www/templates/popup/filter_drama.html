@@ -1,0 +1,41 @@
+
+<div class="row item-input-inset">
+    <div class="col col-25 input-label">
+        <label>關鍵字</label>
+    </div>
+    <div class="col col-75 input-label">
+        <label class="item-input-wrapper">
+            <input type="search" ng-model="filterParams.keyword" placeholder="關鍵字搜尋">
+        </label>
+    </div>
+</div>
+
+<div class="row item-input-inset">
+    <div class="col col-25 input-label">
+        <label>地區</label>
+    </div>
+    <div class="col col-75 input-label">
+        <label class="item-input-wrapper">
+            <input type="search" ng-model="filterParams.place" placeholder="地區關鍵字">
+        </label>
+    </div>
+</div>
+
+<div class="row product-options">
+    <div class="col col-25 item-input-inset">
+        <label>國家</label>
+    </div>
+    <div class="col col-75 select-option-wrapper">
+        <select ng-model="filterParams.countryType" ng-options="type.code as type.name for type in countryList">
+            <option value="">-- 不限 --</option>
+        </select>
+    </div>
+</div>
+
+
+<div class="row product-options">
+    <div class="col col-50" ng-click="resetParams()">
+        <button class="button button-small button-assertive button-block ">重新設定</button>
+    </div>
+
+</div>

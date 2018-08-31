@@ -1,0 +1,86 @@
+<ion-view view-title="個人檔案" hide-back-button='true'>
+
+  <ion-nav-buttons side="left">
+    <button class="button button-clear" ng-click="$ionicGoBack()">
+      <i class="button button-icon ion-ios-arrow-back"></i>
+    </button>
+  </ion-nav-buttons>
+
+  <ion-nav-buttons side="right">
+    <button class="button button-clear" ng-click="actionSheet()">
+      <i class="button button-icon ion-android-settings"></i>
+    </button>
+  </ion-nav-buttons>
+
+  <ion-header-bar class="bar-calm item-input-inset bar-no-border">
+    <!--
+    <label class="item-input-wrapper light-bg">
+      <i class="icon ion-ios-search placeholder-icon"></i>
+      <input type="search" placeholder="Search" value="Hieu Pham">
+    </label>
+
+    <button class="button button-icon ion-ios-gear" ng-if="!searchFocus" ui-sref="tab.settings"></button>
+    -->
+
+  </ion-header-bar>
+
+  <ion-content class="bg-muted">
+    <div class="cover-image has-bg" ng-style="{'background-image': 'url(\'' + 'img/bg.png' + '\')'}"></div>
+
+    <div class="card profile-top text-center">
+      <div class="item item-text-wrap">
+        <button class="button button-icon ion-edit calm" ng-click="updateProfilePopup()" ng-if="isMyInfo"></button>
+        <img src="img/adam.png" class="avatar-profile" alt="">
+        <h2 class="font-thin">{{profile.acc}} ({{profile.gender=="1" ? "男":"女"}})</h2>
+        <div class="text-md">{{profile.username}}</div>
+        <div class="text-md">{{profile.nickname}}</div>
+        <div class="text-md" ng-if="isMyInfo">{{profile.birthday}}</div>
+        <div class="text-md" ng-if="isMyInfo">{{profile.email}}</div>
+        <div class="text-md">{{profile.place}}</div>
+
+        <!-- <div class="text-sm text-muted">好友數 · 304 <i class="icon ion-person-stalker"></i></div> -->
+        <!--
+        <div class="padding">
+          <button class="button button-small font-bold padder button-calm">訊息</button>
+        </div>
+        -->
+
+      </div>
+    </div>
+<!--
+    <div class="card">
+      <div class="row no-padder">
+        <div class="col wrapper-sm b-r">
+          <div class="text-xl calm">{{ profile.shoppingListNum }}</div>
+          <div class="text-xs text-muted">購買清單</div>
+        </div>
+        <div class="col wrapper-sm">
+          <div class="text-xl calm">{{ profile.joinNum }}</div>
+          <div class="text-xs text-muted">購買者</div>
+        </div>
+      </div>
+    </div>
+-->
+    <div class="card">
+      <div class="item item-divider no-bg b-none">
+        清單列表 ({{shoppingList.length}})
+      </div>
+
+
+        <div class="item item-icon-right" ng-repeat="item in shoppingList" ui-sref="tab.shoppingDetail({list_id: item.list_id})">
+
+          <h3>{{item.title}}</h3>
+          <div class="text-sm text-muted">結束日期：2017/12/11</div>
+          <i class="icon ion-ios-information-outline"></i>
+        </div>
+      </div>
+
+    </div>
+
+  </ion-content>
+  <!--
+  <div class="button-fab calm-bg box-shadow">
+    <i class="icon ion-plus"></i>
+  </div>
+  -->
+</ion-view>

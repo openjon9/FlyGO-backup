@@ -1,0 +1,32 @@
+<ion-modal-view class="bg-gradient">
+  <ion-header-bar class="no-bg b-none bar-no-border">
+    <h1 class="title light">商品搜尋</h1>
+    <!-- <button class="button button-icon button-clear button-light ion-android-close" ng-click="closePrivacy()"></button> -->
+  </ion-header-bar>
+
+  <ion-content class="padding light">
+    <label class="item item-input item-select">
+      <div class="input-label">
+        主分類
+      </div>
+      <select>
+        <option selected>所有</option>
+        <option>主分類一</option>
+        <option>主分類二</option>
+      </select>
+    </label>
+    <label class="item item-input item-select">
+      <div class="input-label">
+        次名稱
+      </div>
+      <select>
+        <option selected>所有</option>
+        <option>次分類一</option>
+        <option>次分類二</option>
+      </select>
+    </label>
+  </ion-content>
+  <ion-footer-bar class="no-bg b-none bar-no-border">
+    <button class="button button-block button-outline button-light" style="margin:0 5px;" ng-click="closeProductFilter()">確定</button>
+  </ion-footer-bar>
+</ion-modal-view>

@@ -1,0 +1,31 @@
+<ion-view hide-nav-bar="true">
+  <ion-header-bar class="bar-calm">
+    <h1 class="h1 title">清單列表</h1>
+      <button class="button button-clear" ng-click="showAddToListPopup()">
+          <i class="button button-icon ion-ios-plus-empty"></i>
+      </button>
+  </ion-header-bar>
+
+  <ion-content class="bg-muted">
+    <div class="list list-messages">
+      <!--
+      <div class="item item-text-wrap text-muted" ng-repeat="i in [0,1,2,3,4,5,6,7,8,9]" ui-sref="tab.shoppingDetail">
+        <h2>清單名稱清單名稱清單名稱 {{$index}}</h2>
+        <p>
+          2017/12/11 ~ 2017/12/11
+        </p>
+        <i class="icon ion-ios-information-outline"></i>
+      </div>
+      -->
+      <div class="item item-icon-right" ng-repeat="item in shoppingList" ui-sref="tab.shoppingDetail({list_id: item.list_id})">
+
+        <h3>{{item.title}}</h3>
+        <div class="text-sm text-muted">結束日期：2017/12/11</div>
+        <i class="icon ion-ios-information-outline"></i>
+      </div>
+    </div>
+
+
+
+  </ion-content>
+</ion-view>

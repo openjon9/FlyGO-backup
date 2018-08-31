@@ -1,0 +1,61 @@
+
+<div class="row item-input-inset">
+    <div class="col col-25 input-label">
+        <label>關鍵字</label>
+    </div>
+    <div class="col col-75 input-label">
+        <label class="item-input-wrapper">
+            <input type="search" ng-model="filterParams.keyword" placeholder="關鍵字搜尋">
+        </label>
+    </div>
+</div>
+
+<div class="row product-options">
+    <div class="col col-25 ">
+        主分類
+    </div>
+    <div class="col col-75 select-option-wrapper">
+        <select ng-model="filterParams.type1" ng-change="changeType1Selected()" ng-options="type1.id as type1.title for type1 in productType">
+            <option value="">-- 不限 --</option>
+        </select>
+    </div>
+</div>
+<div class="row product-options">
+    <div class="col col-25 item-input-inset">
+        <label>次分類</label>
+    </div>
+    <div class="col col-75 select-option-wrapper">
+        <select ng-model="filterParams.type2" ng-options="type2.id as type2.title for type2 in filterParams.type2List">
+            <option value="">-- 不限 --</option>
+        </select>
+    </div>
+</div>
+<div class="row product-options">
+    <div class="col col-25 item-input-inset">
+        <label>國家</label>
+    </div>
+    <div class="col col-75 select-option-wrapper">
+        <select ng-model="filterParams.countryType" ng-options="type.code as type.name for type in countryList">
+            <option value="">-- 不限 --</option>
+        </select>
+    </div>
+</div>
+
+<div class="row product-options">
+    <div class="col col-25 item-input-inset">
+        <label>排序</label>
+    </div>
+    <div class="col col-75 select-option-wrapper">
+        <select ng-model="filterParams.sortBy">
+            <option value="new">新增日期</option>
+            <option value="price">價格</option>
+        </select>
+    </div>
+</div>
+
+<div class="row product-options">
+    <div class="col col-50" ng-click="resetParams()">
+        <button class="button button-small button-assertive button-block ">重新設定</button>
+    </div>
+
+</div>
