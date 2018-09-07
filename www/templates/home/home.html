@@ -14,21 +14,14 @@
 -->
     <button class="button button-icon ion-android-funnel" ng-click="showFilterPopup()"></button>
 
+    <button class="button button-icon ion-ios-bookmarks-outline" ui-sref="tab.mydramalist"></button>
 <!--
     <button class="button button-icon ion-grid" ng-click="toggleMenu()"></button>
 -->
   </ion-header-bar>
 
 
-  <div class="bar bar-subheader" horizontal layout center>
-    <img src="img/adam.jpg" alt="" class="thumb-xs rounded m-l-sm m-r-sm">
-    <div class="text-muted" flex ng-click="openPost()">分享您的劇本</div>
-    <button class="button button-icon ion-ios-camera-outline text-muted" ng-click="openPost()"></button>
-  </div>
-
-
-
-<ion-content class="has-subheader bg-muted"><!-- has-subheader -->
+<ion-content class="bg-muted"><!-- has-subheader -->
 
 
     <ion-refresher on-refresh="prePage()" pulling-icon="ion-chevron-up"></ion-refresher>

@@ -221,18 +221,6 @@ angular.module('starter.network.controllers', [])
         getFriends();
     };
 
-    $ionicModal.fromTemplateUrl('templates/modal/new_post.html', {
-      scope: $scope,
-      animation: 'slide-in-up'
-    }).then(function (modal) {
-      $scope.modalPost = modal;
-    });
-    $scope.openPost = function () {
-      $scope.modalPost.show();
-    };
-    $scope.closePost = function () {
-      $scope.modalPost.hide();
-    };
 
 
 

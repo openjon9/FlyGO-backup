@@ -108,18 +108,8 @@ angular.module('starter.drama.controllers', [])
 
     });
 
-    $ionicModal.fromTemplateUrl('templates/modal/new_post.html', {
-      scope: $scope,
-      animation: 'slide-in-up'
-    }).then(function (modal) {
-      $scope.modalPost = modal;
-    });
-    $scope.openPost = function () {
-      $scope.modalPost.show();
-    };
-    $scope.closePost = function () {
-      $scope.modalPost.hide();
-    };
+
+
 
     $scope.showFilterPopup = function(){
         var myPopup = $ionicPopup.show({

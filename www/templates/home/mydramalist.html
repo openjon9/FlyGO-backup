@@ -1,1 +1,34 @@
-<ion-view hide-nav-bar="true"></ion-view>
+<ion-view view-title="我的劇本">
+
+  <ion-header-bar class="bar-calm">
+    <div class="h1 title">我的劇本</div>
+  </ion-header-bar>
+  <ion-content class="bg-muted">
+    <!-- has-subheader -->
+    <label class="item-input-wrapper light-bg">
+      <i class="icon ion-ios-search placeholder-icon"></i>
+      <input type="search" placeholder="Search">
+
+    </label>
+
+    <div class="card" ui-sref="tab.mydramalistDetails()">
+
+      <div class="item item-thumbnail-left item-text-wrap" ng-repeat="i in [0,1,2,3,4,5,6]">
+        <img ng-src="img/okinawa.jpg">
+        <h2><b>沖繩6天5夜自由行</b></h2>
+        <h3>2018/01/01~2018/01/06</h3>
+        <p>台北出發祕密景點玩法大公開</p>
+        <br/>
+        <h5 class="text-right text-sm">總花費:15000 代購利潤:13000</h5>
+
+      </div>
+
+    </div>
+
+  </div>
+  </ion-content>
+
+  <div class="button-fab calm-bg box-shadow">
+    <i class="icon ion-plus" ui-sref="new"></i>
+  </div>
+</ion-view>

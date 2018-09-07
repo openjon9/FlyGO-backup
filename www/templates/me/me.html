@@ -47,7 +47,7 @@
 
       </div>
     </div>
-<!--
+    <!--
     <div class="card">
       <div class="row no-padder">
         <div class="col wrapper-sm b-r">
@@ -62,18 +62,21 @@
     </div>
 -->
     <div class="card">
-      <div class="item item-divider no-bg b-none">
+      <div class="item item-divider bg-white">
         清單列表 ({{shoppingList.length}})
       </div>
-
-
-        <div class="item item-icon-right" ng-repeat="item in shoppingList" ui-sref="tab.shoppingDetail({list_id: item.list_id})">
-
-          <h3>{{item.title}}</h3>
-          <div class="text-sm text-muted">結束日期：2017/12/11</div>
-          <i class="icon ion-ios-information-outline"></i>
-        </div>
+      <div class="item item-divider bg-white">
+        我的劇本 (0)
       </div>
+
+
+      <div class="item item-icon-right" ng-repeat="item in shoppingList" ui-sref="tab.shoppingDetail({list_id: item.list_id})">
+
+        <h3>{{item.title}}</h3>
+        <div class="text-sm text-muted">結束日期：2017/12/11</div>
+        <i class="icon ion-ios-information-outline"></i>
+      </div>
+    </div>
 
     </div>
 

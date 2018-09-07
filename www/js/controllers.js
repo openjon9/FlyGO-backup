@@ -195,19 +195,19 @@ $http.get("http://59.127.37.46:8082/gofly/public/api/product/countryList?code=kr
       })
   }
 
-  //Post Modal 我的劇本
-  $ionicModal.fromTemplateUrl('templates/modal/new_post.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function(modal) {
-    $scope.modalPost = modal;
-  });
-  $scope.openPost = function() {
-    $scope.modalPost.show();
-  };
-  $scope.closePost = function() {
-    $scope.modalPost.hide();
-  };
+  // //Post Modal
+  // $ionicModal.fromTemplateUrl('templates/modal/new_post.html', {
+  //   scope: $scope,
+  //   animation: 'slide-in-up'
+  // }).then(function(modal) {
+  //   $scope.modalPost = modal;
+  // });
+  // $scope.openPost = function() {
+  //   $scope.modalPost.show();
+  // };
+  // $scope.closePost = function() {
+  //   $scope.modalPost.hide();
+  // };
 
   // Login modal 登入
   $ionicModal.fromTemplateUrl('templates/welcome/login.html', {
