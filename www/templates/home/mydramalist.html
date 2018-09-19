@@ -11,7 +11,7 @@
 
     </label>
 
-    <div class="card" ui-sref="tab.mydramalistDetails()">
+    <div class="card" ui-sref="tab.mydramalistDetails">
 
       <div class="item item-thumbnail-left item-text-wrap" ng-repeat="i in [0,1,2,3,4,5,6]">
         <img ng-src="img/okinawa.jpg">
@@ -19,7 +19,6 @@
         <h3>2018/01/01~2018/01/06</h3>
         <p>台北出發祕密景點玩法大公開</p>
         <br/>
-        <h5 class="text-right text-sm">總花費:15000 代購利潤:13000</h5>
 
       </div>
 
@@ -29,6 +28,6 @@
   </ion-content>
 
   <div class="button-fab calm-bg box-shadow">
-    <i class="icon ion-plus" ui-sref="new"></i>
+    <i class="icon ion-plus" ng-click="openAdd()"></i>
   </div>
 </ion-view>

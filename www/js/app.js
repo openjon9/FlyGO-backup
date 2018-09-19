@@ -21,7 +21,6 @@ angular.module('starter', [
   'starter.shopping.controllers',
   'starter.shoppingDetail.controllers',
   'starter.profile.controllers',
-  'starter.newpost.controllers',
   'ionic.ion.autoListDivider',
   'monospaced.elastic',
   'ngCordova'
@@ -69,6 +68,7 @@ angular.module('starter', [
       */
   })
 
+
   .config(function ($stateProvider, $urlRouterProvider) {
 
     // Ionic uses AngularUI Router which uses the concept of states
@@ -92,13 +92,7 @@ angular.module('starter', [
 
       })
 
-      .state('new', {
-        url: '/new',
-        abstract: true,
-        templateUrl: 'templates/new_post.html',
-        controller: 'NewPostCtrl'
 
-      })
 
       // Each tab has its own nav history stack:
 
@@ -123,6 +117,26 @@ angular.module('starter', [
         }
       })
 
+      .state('tab.mydramalistDetails', {
+        url: '/mydramalistDetails',
+        //cache: false,
+        views: {
+          'home': {
+            templateUrl: 'templates/home/mydramalistDetails.html',
+            controller: 'DramaCtrl'
+          }
+        }
+      })
+      .state('tab.mydramaDetail', {
+        url: '/mydramaDetail',
+        //cache: false,
+        views: {
+          'home': {
+            templateUrl: 'templates/home/mydramaDetail.html',
+            controller: 'DramaCtrl'
+          }
+        }
+      })
 
       .state('tab.product', {
         url: '/product',
@@ -204,15 +218,7 @@ angular.module('starter', [
         }
       })
 
-      .state('tab.notifications', {
-        url: '/notifications',
-        views: {
-          'notifications': {
-            templateUrl: 'templates/notifications/notifications.html',
-            controller: 'AppCtrl'
-          }
-        }
-      })
+
 
       .state('tab.profile', {
         url: '/profile/:uid',
@@ -235,45 +241,14 @@ angular.module('starter', [
         }
       })
 
-      .state('new.postDate', {
-        url: '/postDate',
-        cache: false,
-        views: {
-          'new': {
-            templateUrl: 'templates/new/postDate.html',
-            controller: 'NewPostCtrl'
-          }
-        }
-      })
 
-      .state('new.postDetail', {
-        url: '/postDetail',
-        cache: false,
-        views: {
-          'new': {
-            templateUrl: 'templates/new/postDetail.html',
-            controller: 'NewPostCtrl'
-          }
-        }
-      })
 
-      .state('drama.mydramaDetail', {
-        url: '/mydramaDetail',
-        //abstract: true,
-        templateUrl: 'templates/dramalist/mydramaDetail.html',
-        controller: 'NewPostCtrl'
 
-      })
-      .state('drama.mydramalistDetails', {
-        url: '/mydramalistDetails',
-        //abstract: true,
-        templateUrl: 'templates/dramalist/mydramalistDetails.html',
-        controller: 'NewPostCtrl'
-
-      })
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/welcome');
 
+
   });
+
 

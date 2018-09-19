@@ -17,7 +17,12 @@ angular.module('starter')
     });
 
     this.add = function() {
-      if (typeof Camera === 'undefined') return $q.reject();
+      if (typeof Camera === 'undefined'){
+        console.log('undefined Camrera');
+
+        return $q.reject();
+
+      }
       console.log('hey');
 
       return $cordovaCamera.getPicture(options);

@@ -1,0 +1,84 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-calm">
+    <div class="h1 title">{{addDrama.title}}</div>
+    <button class="button button-clear" ng-click="done()">
+      <i class="icon ion-android-close"></i>
+    </button>
+  </ion-header-bar>
+  <ion-content class="has-header has-footer">
+    <ion-slide-box on-slide-changed="slideHasChanged($index)" show-pager="false">
+      <ion-slide class="text-left">
+        <div class="list">
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">劇本標題</span>
+            <input type="text" placeholder="大阪自由行" ng-model='post.title'>
+            <img ng-show="newPost.imgSrc !== undefined" ng-src="{{newPost.imgSrc}}" style="height:50px;width:auto;">
+          </label>
+
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">列表簡介</span>
+            <input type="text" placeholder="大阪是所有新手旅遊者可選擇的好地方">
+          </label>
+
+          <label class="item item-input item-select">
+            <span class="input-label">國家</span>
+            <select ng-model="yourSelectCountry" ng-options="options as options for options in ['日本', '韓國', '新加坡','香港','越南','澳門','泰國','緬甸','菲律賓','美國','澳洲']"
+              ng-init="yourSelectCountry='日本'"></select>
+            </select>
+          </label>
+        </label>
+        <label class="item item-input item-stacked-label">
+        <span class="input-label">地點</span>
+        <input type="text" placeholder="大阪" ng-model='post.location'>
+      </label>
+          <label class="item item-input item-select">
+            <span class="input-label">人數</span>
+            <select ng-model="yourSelect" ng-options="option as option for option in ['1', '2', '3','4','5','6','7','8','9','10']" ng-init="yourSelect='1'"></select>
+            </select>
+
+            </label>
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">標籤</span>
+            <input type="text" placeholder="日本自由行">
+          </label>
+
+          <label class="item item-input item-stacked-label">
+            <span class="input-label">劇本內頁簡介</span>
+            <input type="text" placeholder="此地方適合全家大小遊玩">
+          </label>
+          <ion-toggle ng-model="value" ng-change="toggleChange()" toggle-class="toggle-calm">公開劇本</ion-toggle>
+
+        </div>
+      </ion-slide>
+
+      <ion-slide class="text-left">
+        <div class="list" >
+
+
+      </ion-slide>
+            <div class="item item-thumbnail-left item-text-wrap" ng-repeat="items in newPost.items" ng-show="newPost.items.length > 0" ng-click="openAddLocation(items.date)" on-hold="onHolds(items.date)">
+            <img ng-src="img/okinawa.jpg">
+            <h2></h2>
+            <h3 ng-bind="items.date|date:'yyyy/MM/dd'"></h3>
+            <p>123</p>
+            <br/>
+
+          </div>
+        </div>
+      </ion-slide>
+    </ion-slide-box>
+
+  </ion-content>
+  <div class="button-fab calm-bg box-shadow" ng-show="slideIndex == 1">
+    <i class="icon ion-plus" ng-click="showAddDatePopup()" ></i>
+  </div>
+  <ion-footer-bar class="no-bg b-none bar-no-border">
+    <button class="button button-icon ion-camera" ng-click="takePicture()"></button>
+    <div class="col text-right">
+      <button class="button button-positive button-clear" ng-click="previous() " ng-show="slideIndex> 0" style="color:dodgerblue">上一步</button>
+      <button class="button button-positive button-clear" ng-click="next()" ng-show="slideIndex != 1 " style="color:dodgerblue">下一步</button>
+      <button class="button button-positive button-clear" ng-click="done()" ng-show="slideIndex == 1 " style="color:dodgerblue">完成</button>
+    </div>
+  </ion-footer-bar>
+
+</ion-modal-view>
