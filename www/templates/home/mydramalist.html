@@ -11,20 +11,34 @@
 
     </label>
 
-    <div class="card" ui-sref="tab.mydramalistDetails">
+    <!-- <div class="list" ui-sref="tab.mydramalistDate">
 
-      <div class="item item-thumbnail-left item-text-wrap" ng-repeat="i in [0,1,2,3,4,5,6]">
+      <div class="item item-thumbnail-left item-text-wrap" ng-repeat="item in dramaList" on-hold="onHolds()">
         <img ng-src="img/okinawa.jpg">
-        <h2><b>沖繩6天5夜自由行</b></h2>
+        <h2><b>test</b></h2>
         <h3>2018/01/01~2018/01/06</h3>
         <p>台北出發祕密景點玩法大公開</p>
         <br/>
 
       </div>
 
+    </div> -->
+    <div class="card" ui-sref="tab.mydramalistDate" ng-repeat="item in dramaList">
+      <div class="item item-thumbnail-left item-text-wrap" on-hold="onHolds(item.list_id)">
+        <img ng-src="img/okinawa.jpg">
+        <h2><b>{{item.title}}</b></h2>
+        <h3>{{item.brief}}</h3>
+        <p>{{item.country_name}} / {{item.place}}</p>
+        <p>旅遊人數 : {{item.num}}</p>
+      </div>
+
     </div>
 
-  </div>
+
+    </div>
+    <ion-infinite-scroll on-infinite="nextPage()" distance="1%" ng-if="moreDataCanBeLoaded">
+
+    </ion-infinite-scroll>
   </ion-content>
 
   <div class="button-fab calm-bg box-shadow">

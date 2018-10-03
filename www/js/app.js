@@ -17,6 +17,8 @@ angular.module('starter', [
   'starter.product.controllers',
   'starter.productDetail.controllers',
   'starter.drama.controllers',
+  'starter.mydramalist.controllers',
+  'starter.mydramadatelist.controllers',
   'starter.drama.post.controllers',
   'starter.shopping.controllers',
   'starter.shoppingDetail.controllers',
@@ -95,6 +97,16 @@ angular.module('starter', [
 
 
       // Each tab has its own nav history stack:
+      .state('tab.index', {
+        url: '/index',
+        //cache: false,
+        views: {
+          'index': {
+            templateUrl: 'templates/home/index.html',
+            controller: 'DramaCtrl'
+          }
+        }
+      })
 
       .state('tab.home', {
         url: '/home',
@@ -106,17 +118,43 @@ angular.module('starter', [
           }
         }
       })
+
+
+
+      .state('tab.post',{
+        url:'/post/:id',
+        cache:false,
+        views:{
+          'home':{
+            templateUrl: 'templates/home/post.html',
+            controller: 'DramaPostCtrl'
+          }
+        }
+      })
+
+
+
       .state('tab.mydramalist', {
         url: '/mydramalist',
         //cache: false,
         views: {
           'home': {
             templateUrl: 'templates/home/mydramalist.html',
-            controller: 'DramaCtrl'
+            controller: 'MyDramaListCtrl'
           }
         }
       })
 
+      .state('tab.mydramalistDate', {
+        url: '/mydramalistDate',
+        //cache: false,
+        views: {
+          'home': {
+            templateUrl: 'templates/home/mydramalistDate.html',
+            controller: 'MyDramaDateListCtrl'
+          }
+        }
+      })
       .state('tab.mydramalistDetails', {
         url: '/mydramalistDetails',
         //cache: false,
@@ -127,6 +165,17 @@ angular.module('starter', [
           }
         }
       })
+      .state('tab.mydramalistLocation', {
+        url: '/mydramalistLocation',
+        //cache: false,
+        views: {
+          'home': {
+            templateUrl: 'templates/home/mydramalistLocation.html',
+            controller: 'DramaCtrl'
+          }
+        }
+      })
+
       .state('tab.mydramaDetail', {
         url: '/mydramaDetail',
         //cache: false,

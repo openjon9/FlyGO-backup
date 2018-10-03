@@ -392,4 +392,10 @@
     font-size: 12px;
     margin-left: 6px;
   }
-
+  .wide-as-needed {
+    overflow: scroll;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    
+  }

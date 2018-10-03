@@ -153,7 +153,7 @@ $http.get("http://59.127.37.46:8082/gofly/public/api/product/countryList?code=kr
 
     $timeout(function() {
       $ionicLoading.hide();
-      $state.go('tab.home');
+      $state.go('tab.index');
       $scope.closeLogin();
       $scope.closeRegister();
       $scope.closeForgotPassword();

@@ -1,104 +1,102 @@
 <ion-modal-view>
   <ion-header-bar class="bar-calm">
-        <div class="h1 title">{{addDrama.title}}</div>
-        <button class="button button-clear" ng-click="closeAddDetail()">
-          <i class="icon ion-android-close"></i>
-        </button>
-    </ion-header-bar>
-    <ion-content>
-        <div class="list">
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">地點名稱</span>
-              <input type="text" placeholder="沖繩第一天" ng-model="location.name">
-            </label>
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">出發時間</span>
-              <input type="time" placeholder="2018-12-31" ng-model="location.starttime">
-            </label>
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">結束時間</span>
-              <input type="time" placeholder="2018-12-31" ng-model="location.endtime">
-            </label>
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">營業時間</span>
-              <input type="text" placeholder="10：00-22：30（最終入場時間22：00）" ng-model="location.opentime">
-            </label>
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">公休日</span>
-              <input type="text" placeholder="週一" ng-model="location.holiday">
-            </label>
+    <div class="h1 title">{{addDrama.title}}</div>
+    <button class="button button-clear" ng-click="closeAddDetail()">
+      <i class="icon ion-android-close"></i>
+    </button>
+  </ion-header-bar>
+  <ion-content>
+    <div class="list">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">地點名稱</span>
+        <input type="text" placeholder="沖繩第一天" ng-model="location.name">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">出發時間</span>
+        <input type="time" placeholder="2018-12-31" ng-model="location.starttime">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">結束時間</span>
+        <input type="time" placeholder="2018-12-31" ng-model="location.endtime">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">營業時間</span>
+        <input type="text" placeholder="10：00-22：30（最終入場時間22：00）" ng-model="location.opentime">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">公休日</span>
+        <input type="text" placeholder="週一" ng-model="location.holiday">
+      </label>
 
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">天氣狀況</span>
-            <select ng-model="selectedWeather" >
-              <option ng-repeat="x in weather" value="{{x.value}}">{{x.key}}</option>
-            </select>
-
-
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">天氣狀況</span>
+        <select ng-model="selectedWeather">
+          <option ng-repeat="x in weather" value="{{x.value}}">{{x.key}}</option>
+        </select>
 
 
-            </label>
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">跟大家說些甚麼</span>
-              <input type="text" placeholder="入場費：700日圓" ng-model="location.content">
-            </label>
-
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">電話</span>
-              <input type="text" placeholder="00801-81-2727" ng-model="location.tel">
-            </label>
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">地址</span>
-              <input type="text" placeholder="0123456789" ng-model="location.address">
-            </label>
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">Email</span>
-              <input type="email" placeholder="info@jap.com.tw" ng-model="location.email">
-            </label>
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">社群網站</span>
-              <input type="text" placeholder="www.facebook.com/japanairlines.taiwan/" ng-model="location.social">
-            </label>
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">交通方式</span>
-              <input type="text" placeholder="新幹線" ng-model="location.traffic">
-            </label>
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">花費時間</span>
-              <input type="text" placeholder="阪急梅田站徒步均約8分" ng-model="location.traffictime">
-            </label>
-
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">攜帶物品</span>
-              <input type="text" placeholder="吟釀酒"ng-model="location.baggage">
-            </label>
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">行李尺寸</span>
-              <input type="text" placeholder="100cm" ng-model="location.size">
-            </label>
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">重量</span>
-              <input type="text" placeholder="1.8kg" ng-model="location.weight">
-            </label>
-
-            <label class="item item-input item-stacked-label">       <span class="input-label">景點照</span>    </label>
-
-              <img ng-show="picInfo.pic !== undefined" ng-src="{{picInfo.pic}}" style="height:50px;width:auto;">
 
 
-            <label class="item item-input item-stacked-label">
-              <span class="input-label">景點地點說明</span>
-              <input type="text" placeholder="1.8kg" ng-model="picInfo.txt">
-            </label>
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">跟大家說些甚麼</span>
+        <input type="text" placeholder="入場費：700日圓" ng-model="location.content">
+      </label>
+
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">電話</span>
+        <input type="text" placeholder="00801-81-2727" ng-model="location.tel">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">地址</span>
+        <input type="text" placeholder="0123456789" ng-model="location.address">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Email</span>
+        <input type="email" placeholder="info@jap.com.tw" ng-model="location.email">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">社群網站</span>
+        <input type="text" placeholder="www.facebook.com/japanairlines.taiwan/" ng-model="location.social">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">交通方式</span>
+        <input type="text" placeholder="新幹線" ng-model="location.traffic">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">花費時間</span>
+        <input type="text" placeholder="阪急梅田站徒步均約8分" ng-model="location.traffictime">
+      </label>
+
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">攜帶物品</span>
+        <input type="text" placeholder="吟釀酒" ng-model="location.baggage">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">行李尺寸</span>
+        <input type="text" placeholder="100cm" ng-model="location.size">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">重量</span>
+        <input type="text" placeholder="1.8kg" ng-model="location.weight">
+      </label>
 
 
-          </div>
-    </ion-content>
-    <ion-footer-bar class="no-bg b-none bar-no-border">
-      <button class="button button-icon ion-camera" ng-click="takePictures()"></button>
-      <div class="col text-right">
-          <button class="button button-positive button-clear" ng-click="closeAddDetail" ng-show="slideIndex == 1 " style="color:dodgerblue">新增</button>
-      </div>
 
-    </ion-footer-bar>
-  </ion-modal-view>
+      <label class="item item-thumbnail-left">
+        <img ng-src="img/okinawa.jpg">
+        <div class="wrapper-sm">
+            <input type="text" placeholder="地點說明">
+        </div>
+      </label>
+
+    </div>
+  </ion-content>
+  <ion-footer-bar class="no-bg b-none bar-no-border">
+    <button class="button button-icon ion-camera" ng-click="takePictures()"></button>
+    <div class="col text-right">
+      <button class="button button-positive button-clear" ng-click="doneDetail()" style="color:dodgerblue">新增</button>
+    </div>
+
+  </ion-footer-bar>
+</ion-modal-view>

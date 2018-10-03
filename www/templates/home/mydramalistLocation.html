@@ -1,0 +1,30 @@
+<ion-view view-title="劇本日期">
+
+  <ion-header-bar class="bar-calm">
+    <div class="h1 title">劇本日期</div>
+  </ion-header-bar>
+  <ion-content class="bg-muted">
+    <!-- has-subheader -->
+    <label class="item-input-wrapper light-bg">
+    </label>
+
+    <div class="list" ui-sref="tab.mydramaDetail()">
+
+
+      <div class="item item-thumbnail-left item-text-wrap" ng-repeat="i in [0,1]">
+        <img ng-src="img/okinawa.jpg">
+        <h2><b>梅田．空中庭園展望台．藍天大廈</b></h2>
+        <h3>14:00 ~ 16:00</h3>
+        <br />
+      </div>
+
+
+    </div>
+
+    </div>
+  </ion-content>
+
+  <div class="button-fab calm-bg box-shadow">
+    <i class="icon ion-plus" ng-click="openAddDetail()"></i>
+  </div>
+</ion-view>
