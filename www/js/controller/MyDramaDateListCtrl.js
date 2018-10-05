@@ -1,86 +1,27 @@
 angular.module('starter.mydramadatelist.controllers', [])
-  .controller('MyDramaDateListCtrl', function ($rootScope, $state, $cordovaCamera, $scope, $ionicModal, $ionicPopup, httpService, $ionicLoading, $ionicScrollDelegate, $timeout, $filter, $ionicActionSheet) {
-    $scope.nowPage = 1;
-    $scope.lastPage = 20;
+  .controller('MyDramaDateListCtrl', function ($rootScope, $state, $cordovaCamera, $scope, $ionicModal, $ionicPopup, httpService, $ionicLoading, $ionicScrollDelegate, $timeout, $filter, $ionicActionSheet, $stateParams) {
+
+    console.log("MyDramaDateListCtrl", $stateParams.id);
     $scope.items = {
-      postdate:[]
+      postdate: []
     };
-
-    $scope.loadingPage = false;
-    $scope.dramaList = [];
-
-    $scope.filterParams = {};
-    var getMyDramaList = function () {
-
-      var filterParams = $scope.filterParams;
-
-      if (filterParams instanceof Object) {
-        var paramsString = "";
-        //console.log(filterParams);
-
-        if (filterParams.keyword != null) {
-          paramsString += "&q=" + filterParams.keyword
-        }
-
-        if (filterParams.place != null) {
-          paramsString += "&place=" + filterParams.place
-        }
-
-        if (filterParams.countrytype != '' && filterParams.countrytype) {
-          paramsString += "&country=" + filterParams.countryType
-        }
-
-      }
-
-      if ($scope.nowPage == 1) {
-        // $scope.dramaList = [];
-      }
-
-      httpService.get("/script/getMyList?page=" + $scope.nowPage + "&pageSize=5" + paramsString, {
+    $scope.dateList = [];
+    var getMyDramaDateList = function () {
+      httpService.get("/script/getListDetail/" + $stateParams.id, {
         header: {
           "Device-Id": localStorage.getItem("Device-Id"),
           "Api-Token": localStorage.getItem("Api-Token")
         }
       }, null, function (response) {
 
-        $scope.loadingPage = false;
-        $scope.nowPage++;
-        $scope.lastPage = response.data.data.last_page;
-
-
-
-        if (response.data.data.list.length != 0) {
-          $scope.dramaList = $scope.dramaList.concat(response.data.data.list);
-
-        }
-
+        $scope.dateList = $scope.dateList.concat(response.data.data.schedule);
+        console.log($scope.dateList);
         $ionicLoading.hide({
           template: '<ion-spinner></ion-spinner>'
         })
       });
-    }
-
-    //上一頁
-    $scope.prePage = function () {
-      // Stop the ion-refresher from spinning
-      console.log("prePage");
-      $scope.$broadcast('scroll.refreshComplete');
-    }
-    //下一頁
-    $scope.nextPage = function () {
-      // Stop the ion-infiniteScrollComplete from spinning
-      console.log("nextPage");
-
-      // getMyDramaList();
-
-
-      setTimeout(function () {
-        $scope.$broadcast('scroll.infiniteScrollComplete')
-      }, 2000);
     };
-
-
-
+    getMyDramaDateList();
 
     $scope.showAddDatePopup = function () {
 
@@ -96,7 +37,12 @@ angular.module('starter.mydramadatelist.controllers', [])
             text: '確定新增',
             onTap: function (e) {
               console.log($scope.items.postdate.date);
-
+              if ($scope.items.postdate.date == undefined || $scope.items.postdate.title == "") {
+                $ionicPopup.alert({
+                  title: "錯誤",
+                  content: "日期或標題不正確"
+                });
+              }
               return $scope.items.postdate.date;
             }
           }
@@ -110,57 +56,42 @@ angular.module('starter.mydramadatelist.controllers', [])
           console.log(res);
 
           var newdt = $filter('date')($scope.items.postdate.date, "yyyy-MM-dd");
-          var array = $scope.items.postdate.indexOf(newdt);
-          if (array == -1) {
-            console.log(newdt);
-            $ionicPopup.alert({
-              title: "新增成功",
-            });
-
-            httpService.post("/script/create", {
-              header: {
-                "Device-Id": localStorage.getItem("Device-Id"),
-                "Api-Token": localStorage.getItem("Api-Token")
-              },
-              data: {
-                title: $scope.postdate.title,
-                date: $scope.postdate.date,
-                ispublic:1
-              }
-            }, {
-                title: "劇本建立",
-                content: "成功"
-              }, function (response) {
-                $scope.modalAdd.hide();
-                getMyDramaList();
+          // var array = $scope.items.postdate.indexOf(newdt);
+          // if (array == -1) {
 
 
+
+          httpService.post("/script/createDate", {
+            header: {
+              "Device-Id": localStorage.getItem("Device-Id"),
+              "Api-Token": localStorage.getItem("Api-Token")
+            },
+            data: {
+              sid: $stateParams.id,
+              title: $scope.items.postdate.title,
+              date: newdt,
+              ispublic: 1
+            }
+          }, {
+            }, function (response) {
+              console.log(response);
+              getMyDramaDateList();
+              $ionicPopup.alert({
+                title: "新增成功",
               });
 
-          } else {
-            $ionicPopup.alert({
-              title: "錯誤",
-              content: "日期已重複",
             });
-          }
 
-        } else {
-          $ionicPopup.alert({
-            title: "錯誤",
-            content: "請重新選擇日期",
-          });
+
         }
       });
     };
 
 
     //編輯日期
-    $scope.showEditDatePopup = function (date) {
-      console.log(date);
-      var reDT = $filter('date')(date, "yyyy,MM,dd");
-      console.log(reDT);
+    $scope.showEditDatePopup = function (id,title,date) {
+      console.log(id);
 
-      $scope.items.postdate.date = new Date(reDT);
       var myPopup = $ionicPopup.show({
         cssClass: 'add-to-cart-popup',
         templateUrl: 'templates/popup/addDramaDate-popup.html',
@@ -171,9 +102,14 @@ angular.module('starter.mydramadatelist.controllers', [])
           {
             text: '確定',
             onTap: function (e) {
-              console.log($scope.items.postdate.date);
 
-              return $scope.items.postdate.date;
+              var n=$scope.dateList.indexOf(id);
+
+
+
+
+
+              return id;
             }
           }
         ]
@@ -181,22 +117,35 @@ angular.module('starter.mydramadatelist.controllers', [])
 
 
       //按了確定之後
-      myPopup.then(function (res) {
-        if (res) {
-          console.log(res);
+      myPopup.then(function (id) {
+        if (id) {
+          console.log(id);
 
           var newdt = $filter('date')($scope.items.postdate.date, "yyyy-MM-dd");
           console.log(newdt);
-          $ionicPopup.alert({
-            title: "修改成功",
-          });
-          //更改元素值
-          $scope.items.postdate.date.find(v => v.date == date).date = newdt;
 
+          httpService.post("/script/editDate", {
+            header: {
+              "Device-Id": localStorage.getItem("Device-Id"),
+              "Api-Token": localStorage.getItem("Api-Token")
+            },
+            data: {
+              sdid: id,
+              title: $scope.items.postdate.title,
+              date: $scope.items.postdate.date,
+              ispublic: 1,
+            }
+          }, {
+            }, function (response) {
+              console.log(response.data.data)
+              $ionicPopup.alert({
+                title: "修改成功",
+              });
+            });
         } else {
           $ionicPopup.alert({
             title: "錯誤",
-            content: "請重新選擇日期",
+            content: "日期或標題不正確",
           });
         }
       });
@@ -204,24 +153,44 @@ angular.module('starter.mydramadatelist.controllers', [])
 
 
     //長按之後彈出操作表
-    $scope.onHolds = function (date) {
-      var dt = $filter('date')(date, "yyyy-MM-dd");
+    $scope.onHolds = function (id) {
       var sheet = $ionicActionSheet.show({
-        titleText: '修改劇本日程',
         cssClass: 'action-sheet-group',
         buttons: [
           {
-            text: "<center><i class='icon ion-edit'></i>編輯</center>",
+            text: "<center>編輯日程</center>",
           }
         ],
-        destructiveText: "<center><i class='icon ion-trash-a'></i>刪除</center>",
+        destructiveText: "<center>刪除日程</center>",
         buttonClicked: function () {
-          $scope.showEditDatePopup(dt);
-          //要return true才會關閉操作表
+
+          $scope.showEditDatePopup(id);
+
           return true;
         },
         destructiveButtonClicked: function () {
+          var confirm = $ionicPopup.confirm({
+            title: "確定要刪除行程",
+            cancelText: "否",
+            okText: "是"
+          });
+          confirm.then(function (res) {
+            if (res) {
+              console.log("執行刪除")
+              httpService.post("/script/delDay/" + id, {
+                header: {
+                  "Device-Id": localStorage.getItem("Device-Id"),
+                  "Api-Token": localStorage.getItem("Api-Token")
+                }
+              }, null, function (response) {
+                console.log(response.data.data);
 
+
+              });
+            } else {
+              console.log("不刪除");
+            }
+          });
           return true;
         }
       });

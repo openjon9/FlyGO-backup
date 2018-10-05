@@ -23,9 +23,10 @@
       </div>
 
     </div> -->
-    <div class="card" ui-sref="tab.mydramalistDate" ng-repeat="item in dramaList">
+    <div class="card" ui-sref="tab.mydramalistDate({id:item.list_id})" ng-repeat="item in dramaList">
       <div class="item item-thumbnail-left item-text-wrap" on-hold="onHolds(item.list_id)">
-        <img ng-src="img/okinawa.jpg">
+        <img ng-src="{{item.cover_pic}}">
+
         <h2><b>{{item.title}}</b></h2>
         <h3>{{item.brief}}</h3>
         <p>{{item.country_name}} / {{item.place}}</p>

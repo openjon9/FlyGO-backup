@@ -9,10 +9,10 @@
 
     </label>
 
-    <div class="list" ui-sref="tab.mydramalistLocation()">
+    <div class="list" ui-sref="tab.mydramalistLocation()" ng-repeat="item in dateList" on-hold="onHolds(item.sdid,item.title,item.date)" >
       <div class="item item-text-wrap">
-          <h2><b>第一天</b></h2>
-        <h3><b>2018/01/01</b></h3>
+          <h2><b>{{item.title}}</b></h2>
+        <h3><b>{{item.date}}</b></h3>
         <br/>
         <h5 class="text-right text-sm">今日花費:0 代購利潤:0</h5>
       </div>

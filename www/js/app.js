@@ -146,7 +146,7 @@ angular.module('starter', [
       })
 
       .state('tab.mydramalistDate', {
-        url: '/mydramalistDate',
+        url: '/mydramalistDate/:id',
         //cache: false,
         views: {
           'home': {
