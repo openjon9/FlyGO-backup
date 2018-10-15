@@ -317,8 +317,6 @@ angular.module('starter.drama.controllers', [])
     };
 
 
-
-
     $scope.nowPage = 1;
     $scope.lastPage = 20;
 
@@ -379,7 +377,7 @@ angular.module('starter.drama.controllers', [])
 
 
 
-    getDramaList();
+    // getDramaList();
 
     $scope.prePage = function () {
       // Stop the ion-refresher from spinning

@@ -6,6 +6,8 @@ angular.module('starter.mydramadatelist.controllers', [])
       postdate: []
     };
     $scope.dateList = [];
+
+    //取列表
     var getMyDramaDateList = function () {
       httpService.get("/script/getListDetail/" + $stateParams.id, {
         header: {
@@ -13,19 +15,20 @@ angular.module('starter.mydramadatelist.controllers', [])
           "Api-Token": localStorage.getItem("Api-Token")
         }
       }, null, function (response) {
-
+        $scope.dateList = [];
         $scope.dateList = $scope.dateList.concat(response.data.data.schedule);
         console.log($scope.dateList);
-        $ionicLoading.hide({
-          template: '<ion-spinner></ion-spinner>'
-        })
+
       });
     };
+
+    //進入頁面後取列表
     getMyDramaDateList();
 
+    //新增日程
     $scope.showAddDatePopup = function () {
-
-
+      $scope.items.postdate.title="";
+      $scope.items.postdate.date="";
       var myPopup = $ionicPopup.show({
         cssClass: 'add-to-cart-popup',
         templateUrl: 'templates/popup/addDramaDate-popup.html',
@@ -54,13 +57,9 @@ angular.module('starter.mydramadatelist.controllers', [])
       myPopup.then(function (res) {
         if (res) {
           console.log(res);
-
           var newdt = $filter('date')($scope.items.postdate.date, "yyyy-MM-dd");
-          // var array = $scope.items.postdate.indexOf(newdt);
-          // if (array == -1) {
-
-
-
+          console.log(newdt);
+          //新增日程API
           httpService.post("/script/createDate", {
             header: {
               "Device-Id": localStorage.getItem("Device-Id"),
@@ -75,13 +74,10 @@ angular.module('starter.mydramadatelist.controllers', [])
           }, {
             }, function (response) {
               console.log(response);
+
               getMyDramaDateList();
-              $ionicPopup.alert({
-                title: "新增成功",
-              });
 
             });
-
 
         }
       });
@@ -89,9 +85,19 @@ angular.module('starter.mydramadatelist.controllers', [])
 
 
     //編輯日期
-    $scope.showEditDatePopup = function (id,title,date) {
-      console.log(id);
+    $scope.showEditDatePopup = function (id) {
+      httpService.get("/script/getDateDetail/" + id, {
+        header: {
+          "Device-Id": localStorage.getItem("Device-Id"),
+          "Api-Token": localStorage.getItem("Api-Token")
+        }
+      }, null, function (res) {
+        $scope.items.postdate.title = res.data.data.title;
+        var d = new Date(res.data.data.date);
+        console.log(d);
+        $scope.items.postdate.date = d;
 
+      });
       var myPopup = $ionicPopup.show({
         cssClass: 'add-to-cart-popup',
         templateUrl: 'templates/popup/addDramaDate-popup.html',
@@ -102,13 +108,12 @@ angular.module('starter.mydramadatelist.controllers', [])
           {
             text: '確定',
             onTap: function (e) {
-
-              var n=$scope.dateList.indexOf(id);
-
-
-
-
-
+              if ($scope.items.postdate.date == undefined || $scope.items.postdate.title == "") {
+                $ionicPopup.alert({
+                  title: "錯誤",
+                  content: "日期或標題不正確"
+                });
+              }
               return id;
             }
           }
@@ -120,10 +125,8 @@ angular.module('starter.mydramadatelist.controllers', [])
       myPopup.then(function (id) {
         if (id) {
           console.log(id);
-
           var newdt = $filter('date')($scope.items.postdate.date, "yyyy-MM-dd");
           console.log(newdt);
-
           httpService.post("/script/editDate", {
             header: {
               "Device-Id": localStorage.getItem("Device-Id"),
@@ -132,7 +135,7 @@ angular.module('starter.mydramadatelist.controllers', [])
             data: {
               sdid: id,
               title: $scope.items.postdate.title,
-              date: $scope.items.postdate.date,
+              date: newdt,
               ispublic: 1,
             }
           }, {
@@ -142,11 +145,7 @@ angular.module('starter.mydramadatelist.controllers', [])
                 title: "修改成功",
               });
             });
-        } else {
-          $ionicPopup.alert({
-            title: "錯誤",
-            content: "日期或標題不正確",
-          });
+          getMyDramaDateList();
         }
       });
     };
@@ -183,9 +182,11 @@ angular.module('starter.mydramadatelist.controllers', [])
                   "Api-Token": localStorage.getItem("Api-Token")
                 }
               }, null, function (response) {
-                console.log(response.data.data);
-
-
+                $ionicPopup.alert({
+                  title: "刪除行程",
+                  content: "成功"
+                });
+                getMyDramaDateList();
               });
             } else {
               console.log("不刪除");
@@ -196,6 +197,4 @@ angular.module('starter.mydramadatelist.controllers', [])
       });
 
     };
-
-
   });

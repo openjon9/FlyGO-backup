@@ -1,21 +1,22 @@
-<ion-view view-title="劇本日期">
+<ion-view view-title="劇本地點">
 
   <ion-header-bar class="bar-calm">
-    <div class="h1 title">劇本日期</div>
+    <div class="h1 title">劇本地點</div>
   </ion-header-bar>
   <ion-content class="bg-muted">
     <!-- has-subheader -->
     <label class="item-input-wrapper light-bg">
     </label>
 
-    <div class="list" ui-sref="tab.mydramaDetail()">
+    <div class="list"  ng-repeat="item in LocationList" on-hold="onHolds(item.slid)" ui-sref="tab.mydramaDetail({id:item.slid})" >
 
 
-      <div class="item item-thumbnail-left item-text-wrap" ng-repeat="i in [0,1]">
-        <img ng-src="img/okinawa.jpg">
-        <h2><b>梅田．空中庭園展望台．藍天大廈</b></h2>
-        <h3>14:00 ~ 16:00</h3>
-        <br />
+      <div class="item item-thumbnail-left item-text-wrap">
+        <img ng-src="{{item.pic_info[0].pic}}">
+        <h2><b>{{item.name}}</b></h2>
+        <h3>{{item.pic_info[0].txt}}</h3>
+        <h3>{{item.starttime}}~{{item.endtime}}</h3>
+        <br/>
       </div>
 
 
@@ -25,6 +26,6 @@
   </ion-content>
 
   <div class="button-fab calm-bg box-shadow">
-    <i class="icon ion-plus" ng-click="openAddDetail()"></i>
+    <i class="icon ion-plus" ng-click="openAddLocation()"></i>
   </div>
 </ion-view>

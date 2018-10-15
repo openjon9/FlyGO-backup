@@ -1,7 +1,7 @@
 <ion-view view-title="新增日程">
 
   <ion-header-bar class="bar-calm">
-    <div class="h1 title">沖繩6天5夜自由行2</div>
+    <div class="h1 title">新增日程</div>
   </ion-header-bar>
   <ion-content class="bg-muted">
     <!-- has-subheader -->
@@ -9,12 +9,12 @@
 
     </label>
 
-    <div class="list" ui-sref="tab.mydramalistLocation()" ng-repeat="item in dateList" on-hold="onHolds(item.sdid,item.title,item.date)" >
+    <div class="card" ui-sref="tab.mydramalistLocation({id:item.sdid})" ng-repeat="item in dateList" on-hold="onHolds(item.sdid)" >
       <div class="item item-text-wrap">
           <h2><b>{{item.title}}</b></h2>
         <h3><b>{{item.date}}</b></h3>
         <br/>
-        <h5 class="text-right text-sm">今日花費:0 代購利潤:0</h5>
+        <!-- <h5 class="text-right text-sm">今日花費:0 代購利潤:0</h5> -->
       </div>
     </div>
 

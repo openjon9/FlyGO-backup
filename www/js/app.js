@@ -23,6 +23,9 @@ angular.module('starter', [
   'starter.shopping.controllers',
   'starter.shoppingDetail.controllers',
   'starter.profile.controllers',
+  'starter.mydramalocationlist.controllers',
+  'starter.mydramaDetail.controllers',
+  'starter.index.controllers',
   'ionic.ion.autoListDivider',
   'monospaced.elastic',
   'ngCordova'
@@ -103,7 +106,7 @@ angular.module('starter', [
         views: {
           'index': {
             templateUrl: 'templates/home/index.html',
-            controller: 'DramaCtrl'
+            controller: 'indexCtrl'
           }
         }
       })
@@ -166,23 +169,23 @@ angular.module('starter', [
         }
       })
       .state('tab.mydramalistLocation', {
-        url: '/mydramalistLocation',
+        url: '/mydramalistLocation/:id',
         //cache: false,
         views: {
           'home': {
             templateUrl: 'templates/home/mydramalistLocation.html',
-            controller: 'DramaCtrl'
+            controller: 'MyDramaLocationCtrl'
           }
         }
       })
 
       .state('tab.mydramaDetail', {
-        url: '/mydramaDetail',
+        url: '/mydramaDetail/:id',
         //cache: false,
         views: {
           'home': {
             templateUrl: 'templates/home/mydramaDetail.html',
-            controller: 'DramaCtrl'
+            controller: 'MyDramaDetailCtrl'
           }
         }
       })

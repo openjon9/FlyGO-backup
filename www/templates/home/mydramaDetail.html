@@ -1,139 +1,129 @@
-<ion-view view-title="第二天沖繩市區走透透">
+<ion-view view-title="當日行程">
 
-  <ion-header-bar class="bar-calm">
-    <div class="h1 title">第二天沖繩市區走透透</div>
+  <ion-header-bar class="bar-calm" >
+    <div class="h1 title"></div>
   </ion-header-bar>
   <ion-content class="bg-muted">
     <!-- has-subheader -->
-    <div class="card">
+    <div class="card" ng-repeat="item in LocationDetail">
 
-      <label class="item item-input item-stacked-label">
-        <div class="wrapper-sm">
-          <p class="text-muted">日程標題</p>
-          <span class="text-base">第二天沖繩市區走透透</span>
-        </div>
-      </label>
 
       <label class="item item-input item-stacked-label">
         <div class="wrapper-sm">
           <p class="text-muted">地點名稱</p>
-          <span class="text-base">大阪</span>
+          <span class="text-base">{{item.name}}</span>
         </div>
       </label>
       <label class="item item-thumbnail-left">
-        <img ng-src="img/okinawa.jpg">
+        <img ng-src="{{item.pic_info[0].pic_url}}">
         <div class="wrapper-sm">
           <p class="text-muted">地點說明</p>
-          <span class="text-base">景點</span>
-        </div>
-      </label>
-      <label class="item item-input item-stacked-label">
-        <div class="wrapper-sm">
-          <p class="text-muted">日期</p>
-          <span class="text-base">2018/01/02</span>
-        </div>
-      </label>
-      <label class="item item-input item-stacked-label">
-        <div class="wrapper-sm">
-          <p class="text-muted">出發時間</p>
-          <span class="text-base">07:00</span>
+          <span class="text-base">{{item.pic_info[0].txt}}</span>
         </div>
       </label>
 
       <label class="item item-input item-stacked-label">
         <div class="wrapper-sm">
-          <p class="text-muted">營業時間</p>
-          <span class="text-base">09:00</span>
+          <p class="text-muted">出發時間</p>
+          <span class="text-base">{{item.starttime}}</span>
         </div>
       </label>
       <label class="item item-input item-stacked-label">
         <div class="wrapper-sm">
-          <p class="text-muted">公休日</p>
-          <span class="text-base">每週一</span>
-        </div>
-      </label>
-      <label class="item item-input item-stacked-label">
-        <div class="wrapper-sm">
-          <p class="text-muted">天氣</p>
-          <span class="text-base">晴天</span>
-        </div>
-      </label>
-      <label class="item item-input item-stacked-label">
-        <div class="wrapper-sm">
-          <p class="text-muted">跟大家分享些什麼</p>
-          <span class="text-base">我在大阪天氣晴</span>
+          <p class="text-muted">結束時間</p>
+          <span class="text-base">{{item.endtime}}</span>
         </div>
       </label>
       <label class="item item-input item-stacked-label">
         <div class="wrapper-sm">
           <p class="text-muted">電話</p>
-          <span class="text-base">012-3456789</span>
+          <span class="text-base">{{item.tel}}</span>
         </div>
       </label>
 
       <label class="item item-input item-stacked-label">
         <div class="wrapper-sm">
           <p class="text-muted">地址</p>
-          <span class="text-base">大阪市中央區宗右衛門町7-2</span>
+          <span class="text-base">{{item.address}}</span>
         </div>
       </label>
       <label class="item item-input item-stacked-label">
         <div class="wrapper-sm">
+          <p class="text-muted">營業時間</p>
+          <span class="text-base">{{item.opentime}}</span>
+        </div>
+      </label>
+
+      <label class="item item-input item-stacked-label">
+        <div class="wrapper-sm">
+          <p class="text-muted">公休日</p>
+          <span class="text-base">{{item.holiday}}</span>
+        </div>
+      </label>
+
+      <label class="item item-input item-stacked-label">
+        <div class="wrapper-sm">
+          <p class="text-muted">天氣</p>
+          <span class="text-base">{{key.weather}}</span>
+        </div>
+      </label>
+
+      <label class="item item-input item-stacked-label">
+        <div class="wrapper-sm">
+          <p class="text-muted">跟大家分享些什麼</p>
+          <span class="text-base">{{item.content}}</span>
+        </div>
+      </label>
+
+
+      <label class="item item-input item-stacked-label">
+        <div class="wrapper-sm">
           <p class="text-muted">Email</p>
-          <span class="text-base">123@gmail.com</span>
+          <span class="text-base">{{item.email}}</span>
         </div>
       </label>
       <label class="item item-input item-stacked-label">
         <div class="wrapper-sm">
           <p class="text-muted">社群</p>
-          <span class="text-base">www.facebook.com</span>
+          <span class="text-base">{{item.social}}</span>
         </div>
       </label>
       <label class="item item-input item-stacked-label">
         <div class="wrapper-sm">
           <p class="text-muted">交通方式</p>
-          <span class="text-base">新幹線</span>
+          <span class="text-base">{{item.traffic}}</span>
         </div>
       </label>
       <label class="item item-input item-stacked-label">
         <div class="wrapper-sm">
           <p class="text-muted">交通花費時間</p>
-          <span class="text-base">1小時</span>
+          <span class="text-base">{{item.traffictime}}</span>
         </div>
       </label>
       <label class="item item-input item-stacked-label">
         <div class="wrapper-sm">
           <p class="text-muted">GPS定位</p>
-          <span class="text-base"></span>
+          <span class="text-base">{{item.gps}}</span>
         </div>
       </label>
       <label class="item item-input item-stacked-label">
         <div class="wrapper-sm">
           <p class="text-muted">攜帶物品</p>
-          <span class="text-base">行李箱</span>
+          <span class="text-base">{{item.baggage}}</span>
         </div>
       </label>
       <label class="item item-input item-stacked-label">
         <div class="wrapper-sm">
           <p class="text-muted">行李尺寸</p>
-          <span class="text-base">100x300</span>
+          <span class="text-base">{{item.size}}</span>
         </div>
       </label>
       <label class="item item-input item-stacked-label">
         <div class="wrapper-sm">
           <p class="text-muted">重量</p>
-          <span class="text-base">5KG</span>
+          <span class="text-base">{{item.weight}}</span>
         </div>
       </label>
-
-
-
-
-
     </div>
-
-
   </ion-content>
-
-
 </ion-view>

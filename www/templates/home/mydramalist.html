@@ -26,13 +26,12 @@
     <div class="card" ui-sref="tab.mydramalistDate({id:item.list_id})" ng-repeat="item in dramaList">
       <div class="item item-thumbnail-left item-text-wrap" on-hold="onHolds(item.list_id)">
         <img ng-src="{{item.cover_pic}}">
-
         <h2><b>{{item.title}}</b></h2>
-        <h3>{{item.brief}}</h3>
+        <h3 ng-show="item.brief !== 'undefined' ">{{item.brief}}</h3>
+        <h3 ng-show="item.start_date!=''">{{item.start_date}}~{{item.end_date}}</h3>
         <p>{{item.country_name}} / {{item.place}}</p>
         <p>旅遊人數 : {{item.num}}</p>
       </div>
-
     </div>
 
 

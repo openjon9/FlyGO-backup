@@ -18,12 +18,15 @@
           </label>
           <input type="text" name="title" placeholder="大阪自由行" ng-model='newPost.title' required="">
 
-          <img ng-show="newPost.imgSrc !== undefined" ng-src="{{newPost.imgSrc}}" style="height:50px;width:auto;">
+          <img ng-show="newPost.imgSrc !== undefined" ng-src="{{newPost.imgSrc}}">
         </label>
 
         <label class="item item-input item-stacked-label">
           <span class="input-label">列表簡介</span>
-          <input type="text" placeholder="大阪是所有新手旅遊者可選擇的好地方" ng-model="newPost.brief">
+          <label ng-show="mydrama.$submitted || mydrama.brief.$touched">
+            <span ng-show="mydrama.brief.$error.required" style="color:red">列表簡介未填寫</span>
+          </label>
+          <input type="text"  name="brief" placeholder="大阪是所有新手旅遊者可選擇的好地方" ng-model="newPost.brief" required="">
 
         </label>
 
@@ -60,6 +63,8 @@
 
     <ion-footer-bar class="no-bg b-none bar-no-border">
       <button class="button button-icon ion-camera" ng-click="takePicture()"></button>
+      <button class="button button-icon ion-android-image" ng-click="takePictures()"></button>
+      <button class="button button-icon ion-location" ng-click="getGeoLocation()"></button>
 
       <div class="col text-right">
         <button type="submit" class="button button-positive button-clear" ng-click="submitDrama()" style="color:dodgerblue">完成</button>
