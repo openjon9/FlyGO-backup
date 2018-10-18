@@ -81,12 +81,24 @@ angular.module('starter', [
     // Set up the various states which the app can be in.
     // Each state's controller can be found in controllers.js
     $stateProvider
+
+
+    // .state('first', {
+    //   url: '/first',
+    //   templateUrl: 'templates/first/first.html',
+    //   controller: 'FirstCtrl'
+    // })
+
       /*WELCOME*/
       .state('welcome', {
         url: '/welcome',
         templateUrl: 'templates/welcome/intro.html',
         controller: 'AppCtrl'
       })
+
+
+
+
 
       // setup an abstract state for the tabs directive
       .state('tab', {
@@ -158,16 +170,7 @@ angular.module('starter', [
           }
         }
       })
-      .state('tab.mydramalistDetails', {
-        url: '/mydramalistDetails',
-        //cache: false,
-        views: {
-          'home': {
-            templateUrl: 'templates/home/mydramalistDetails.html',
-            controller: 'DramaCtrl'
-          }
-        }
-      })
+
       .state('tab.mydramalistLocation', {
         url: '/mydramalistLocation/:id',
         //cache: false,

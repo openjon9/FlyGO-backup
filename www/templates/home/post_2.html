@@ -1,5 +1,4 @@
-<ion-view view-title="{{drama.title}}">
-
+<ion-modal-view>
 <!--
   <ion-nav-buttons side="secondary">
     <button class="button button-icon ion-ios-more"></button>
@@ -7,6 +6,9 @@
 -->
 <ion-header-bar class="bar-calm">
   <div class="h1 title">{{drama.title}}</div>
+  <button class="button button-clear" ng-click="closeDetail()">
+      <i class="icon ion-android-close"></i>
+  </button>
 </ion-header-bar>
   <ion-content>
 
@@ -436,4 +438,4 @@
     </button>
   </ion-footer-bar>
   -->
-</ion-view>
+</ion-modal-view>

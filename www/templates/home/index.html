@@ -25,7 +25,7 @@
 
       <ion-scroll direction="x" class="wide-as-needed">
 
-        <div class="thumb-xl padder-lg" ng-repeat="item in indexSpecial">
+        <div class="thumb-xl padder-lg" ng-repeat="item in indexSpecial" ng-click="openDetail(item.list_id)">
           <img ng-src="{{item.cover_pic}}" class="thumb-xl">
           <p>{{item.place}}</p>
         </div>
@@ -42,7 +42,7 @@
       <label type="text" class="col text-right text-sm" style="color:green;">更多</label>
 
       <ion-scroll direction="x" class="wide-as-needed">
-        <div class="thumb-xl padder-lg" ng-repeat="item in indexHot">
+        <div class="thumb-xl padder-lg" ng-repeat="item in indexHot" ng-click="openDetail(item.list_id)">
           <img ng-src="{{item.cover_pic}}" class="thumb-xl">
           <p>{{item.place}}</p>
         </div>
@@ -59,7 +59,7 @@
       <label type="text" class="col text-right text-sm" style="color:green;">更多</label>
 
       <ion-scroll direction="x" class="wide-as-needed">
-        <div class="thumb-xl padder-lg" ng-repeat="item in indexJP">
+        <div class="thumb-xl padder-lg" ng-repeat="item in indexJP" ng-click="openDetail(item.list_id)">
           <img ng-src="{{item.cover_pic}}" class="thumb-xl">
           <p>{{item.place}}</p>
         </div>
@@ -75,7 +75,7 @@
       <label type="text" class="col text-right text-sm" style="color:green;">更多</label>
 
       <ion-scroll direction="x" class="wide-as-needed">
-        <div class="thumb-xl padder-lg" ng-repeat="item in indexKR">
+        <div class="thumb-xl padder-lg" ng-repeat="item in indexKR" ng-click="openDetail(item.list_id)">
           <img ng-src="{{item.cover_pic}}" class="thumb-xl">
           <p>{{item.place}}</p>
         </div>

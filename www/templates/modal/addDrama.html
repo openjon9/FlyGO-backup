@@ -11,28 +11,37 @@
       <ion-slide class="text-left"> -->
       <div class="list">
 
-        <label class="item item-input item-stacked-label">
+        <div class="item item-input item-stacked-label">
           <span class="input-label">劇本標題</span>
           <label ng-show="mydrama.$submitted || mydrama.title.$touched">
             <span ng-show="mydrama.title.$error.required" style="color:red">標題未填寫</span>
           </label>
-          <input type="text" name="title" placeholder="大阪自由行" ng-model='newPost.title' required="">
 
-          <img ng-show="newPost.imgSrc !== undefined" ng-src="{{newPost.imgSrc}}">
-        </label>
+          <input type="text" name="title" placeholder="大阪自由行" ng-model='newPost.title' required="">
+          <div class="thumb-xl"  ng-click="openImage()">
+              <img ng-show="newPost.imgSrc !== undefined" ng-src="{{newPost.imgSrc}}" class="thumb-xl">
+            </div>
+        </div>
+
+
+
+
 
         <label class="item item-input item-stacked-label">
           <span class="input-label">列表簡介</span>
           <label ng-show="mydrama.$submitted || mydrama.brief.$touched">
-            <span ng-show="mydrama.brief.$error.required" style="color:red">列表簡介未填寫</span>
+            <span ng-show="mydrama.brief.$error.required" style="color:red">簡介未填寫</span>
           </label>
           <input type="text"  name="brief" placeholder="大阪是所有新手旅遊者可選擇的好地方" ng-model="newPost.brief" required="">
 
         </label>
 
         <label class="item item-input item-stacked-label">
-          <span class="input-label">劇本內頁簡介</span>
-          <input type="text" placeholder="此地方適合全家大小遊玩" ng-model="newPost.content">
+          <span class="input-label">內頁簡介</span>
+          <label ng-show="mydrama.$submitted || mydrama.content.$touched">
+            <span ng-show="mydrama.content.$error.required" style="color:red">內頁未填寫</span>
+          </label>
+          <input type="text" placeholder="此地方適合全家大小遊玩" ng-model="newPost.content" name="content">
         </label>
         <label class="item item-input item-select">
           <span class="input-label">國家</span>
@@ -64,7 +73,8 @@
     <ion-footer-bar class="no-bg b-none bar-no-border">
       <button class="button button-icon ion-camera" ng-click="takePicture()"></button>
       <button class="button button-icon ion-android-image" ng-click="takePictures()"></button>
-      <button class="button button-icon ion-location" ng-click="getGeoLocation()"></button>
+
+
 
       <div class="col text-right">
         <button type="submit" class="button button-positive button-clear" ng-click="submitDrama()" style="color:dodgerblue">完成</button>

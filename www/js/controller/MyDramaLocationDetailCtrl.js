@@ -25,7 +25,12 @@ angular.module('starter.mydramaDetail.controllers', [])
         console.log($scope.LocationDetail);
         var _numWeather = response.data.data.weather-1;
         console.log(_numWeather);
-        $scope.key.weather = $scope.weather[_numWeather].key;
+        try {
+          $scope.key.weather = $scope.weather[_numWeather].key;
+        }catch{
+          $scope.key.weather="";
+        }
+
 
 
       });

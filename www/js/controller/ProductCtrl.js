@@ -187,7 +187,7 @@ angular.module('starter.product.controllers', [])
     };
 
 
-    $scope.default_list_id = null;
+    $scope.default_list_id = [];
 
     httpService.get("/shop/getList", {
         header: {
@@ -195,9 +195,11 @@ angular.module('starter.product.controllers', [])
             "Api-Token": localStorage.getItem("Api-Token")
         }
     }, null, function (response) {
-        $scope.shoppingDetail = response.data.data;
-        console.log($scope.shoppingDetail);
-        $scope.default_list_id = $scope.shoppingDetail[0].list_id;
+        if(response.data.data.length>1){
+          $scope.shoppingDetail = response.data.data;
+          $scope.default_list_id = $scope.shoppingDetail[0].list_id;
+        }
+
     });
 
     $scope.showAddToCartPopup = function(obj) {

@@ -92,6 +92,7 @@ angular.module('starter.mydramadatelist.controllers', [])
           "Api-Token": localStorage.getItem("Api-Token")
         }
       }, null, function (res) {
+        console.log(id);
         $scope.items.postdate.title = res.data.data.title;
         var d = new Date(res.data.data.date);
         console.log(d);
@@ -124,7 +125,7 @@ angular.module('starter.mydramadatelist.controllers', [])
       //按了確定之後
       myPopup.then(function (id) {
         if (id) {
-          console.log(id);
+          console.log("劇本id:"+id);
           var newdt = $filter('date')($scope.items.postdate.date, "yyyy-MM-dd");
           console.log(newdt);
           httpService.post("/script/editDate", {
@@ -133,7 +134,7 @@ angular.module('starter.mydramadatelist.controllers', [])
               "Api-Token": localStorage.getItem("Api-Token")
             },
             data: {
-              sdid: id,
+              id: id,
               title: $scope.items.postdate.title,
               date: newdt,
               ispublic: 1,
@@ -141,11 +142,9 @@ angular.module('starter.mydramadatelist.controllers', [])
           }, {
             }, function (response) {
               console.log(response.data.data)
-              $ionicPopup.alert({
-                title: "修改成功",
-              });
+              getMyDramaDateList();
             });
-          getMyDramaDateList();
+
         }
       });
     };

@@ -1,5 +1,5 @@
 angular.module('starter.index.controllers', [])
-  .controller('indexCtrl', function ($scope, httpService, $timeout,  $ionicSlideBoxDelegate) {
+  .controller('indexCtrl', function ($scope, httpService, $timeout,  $ionicSlideBoxDelegate,$ionicModal) {
     $ionicSlideBoxDelegate.update();
     $scope.indexHot=[];
     $scope.indexSpecial=[];
@@ -50,7 +50,7 @@ angular.module('starter.index.controllers', [])
 
       });
     }
-
+    //韓國
     var GetKRList=function(country){
       httpService.get("/script/getList?page=" +1 + "&pageSize=10" +"&country="+country, {
         header: {
@@ -63,6 +63,8 @@ angular.module('starter.index.controllers', [])
 
       });
     }
+
+    //Banner
     var GetBanner=function(){
       httpService.get("/home/getBannerList", {
         header: {
@@ -74,9 +76,39 @@ angular.module('starter.index.controllers', [])
         $scope.banner=$scope.banner.concat(response.data.data);
         console.log( $scope.banner);
 
-
+        $ionicSlideBoxDelegate.update();
       });
     };
+
+
+    $ionicModal.fromTemplateUrl('templates/home/post_2.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function (modal) {
+
+      $scope.DetailModal = modal;
+
+    });
+    var getDetail=function(id){
+      httpService.get("/script/getListDetail/" + id, {
+        header: {
+          "Device-Id": localStorage.getItem("Device-Id"),
+          "Api-Token": localStorage.getItem("Api-Token")
+        }
+      }, null, function (response) {
+        $scope.drama = response.data.data;
+        console.log($scope.drama);
+
+      });
+    }
+    $scope.openDetail=function(id){
+      $scope.DetailModal.show();
+      getDetail(id);
+    }
+    $scope.closeDetail=function(){
+      $scope.DetailModal.hide();
+    }
+
 
 
     GetHotIndexList();
@@ -84,5 +116,6 @@ angular.module('starter.index.controllers', [])
     GetJPList("jp")
     GetKRList("kr")
     GetBanner();
+
 
   });

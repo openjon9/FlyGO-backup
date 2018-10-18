@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('TabCtrl', function($scope, $rootScope){
+.controller('TabCtrl', function($scope, $rootScope,$state, $timeout,$ionicLoading){
 
     $scope.tabTip = {
         messageNum: 0
@@ -50,6 +50,69 @@ angular.module('starter.controllers', [])
     $rootScope.chat.init();
 
     console.log("TabCtrl");
+
+  $scope.goDrama=function(){
+    $ionicLoading.show({
+      template: '<ion-spinner></ion-spinner>'
+    });
+    $timeout(function() {
+      $ionicLoading.hide();
+      $state.go('tab.home',{reload: true});
+    }, 300);
+  };
+
+  $scope.goProductList=function(){
+    $ionicLoading.show({
+      template: '<ion-spinner></ion-spinner>'
+    });
+    $timeout(function() {
+      $ionicLoading.hide();
+      $state.go('tab.product',{reload: true});
+    }, 300);
+  };
+
+
+
+
+  $scope.goWishList=function(){
+    $ionicLoading.show({
+      template: '<ion-spinner></ion-spinner>'
+    });
+    $timeout(function() {
+      $ionicLoading.hide();
+      $state.go('tab.shopping',{reload: true});
+    }, 300);
+  };
+
+  $scope.goFriends=function(){
+    $ionicLoading.show({
+      template: '<ion-spinner></ion-spinner>'
+    });
+    $timeout(function() {
+      $ionicLoading.hide();
+      $state.go('tab.network',{reload: true});
+    }, 300);
+  };
+
+  $scope.goMessages=function(){
+    $ionicLoading.show({
+      template: '<ion-spinner></ion-spinner>'
+    });
+    $timeout(function() {
+      $ionicLoading.hide();
+      $state.go('tab.messaging',{reload: true});
+    }, 300);
+  };
+  $scope.goHome=function(){
+    $ionicLoading.show({
+      template: '<ion-spinner></ion-spinner>'
+    });
+    $timeout(function() {
+      $ionicLoading.hide();
+      $state.go('tab.index',{reload: true});
+    }, 300);
+  };
+
 
 })
 .controller('AppCtrl', function($scope, $rootScope, httpService, $ionicSideMenuDelegate, $ionicModal, $ionicPopup, Users, $http, $ionicLoading, $state, $timeout, PhotoService) {
@@ -145,7 +208,8 @@ $http.get("http://59.127.37.46:8082/gofly/public/api/product/countryList?code=kr
 
   $scope.goToHome = function() {
     $ionicLoading.show({
-      template: '<ion-spinner></ion-spinner>'
+      template: '<ion-spinner icon="ios"></ion-spinner><p style="margin: 5px 0 0 0;"></p>',
+      duration: 2000
     });
 
 
@@ -157,7 +221,7 @@ $http.get("http://59.127.37.46:8082/gofly/public/api/product/countryList?code=kr
       $scope.closeLogin();
       $scope.closeRegister();
       $scope.closeForgotPassword();
-    }, 2000);
+    }, 1000);
   };
 
   $scope.actionSheet = function() {
@@ -520,10 +584,72 @@ $http.get("http://59.127.37.46:8082/gofly/public/api/product/countryList?code=kr
         });
     };
 
+    var DeviceId = localStorage.getItem("Device-Id");
+    var ApiToken = localStorage.getItem("Api-Token");
+    var TalkToken = localStorage.getItem("Talk-Token");
+    var URI="http://59.126.17.211:8082/gofly/public/api"
+    var path="/friends/userList"
+    var getAuth=function(){
+        $http({
+          method:'Get',
+          headers: {
+            "Content-Type":"application/json",
+            "Device-Id": localStorage.getItem("Device-Id"),
+            "Api-Token": localStorage.getItem("Api-Token")
+          },
+          url:URI+path
+        }).then(function successCallback(response){
+          console.log(response);
+          $ionicLoading.show({
+            template: '<ion-spinner icon="ios"></ion-spinner><p style="margin: 5px 0 0 0;"></p>',
+            duration: 2000
+          });
+          $state.go("tab.index");
+          $ionicLoading.hide({
+            template: '<ion-spinner icon="ios"></ion-spinner><p style="margin: 5px 0 0 0;"></p>',
+            duration: 1000
+          });
+        }, function errorCallback(response) {
+          console.log(response);
+          if(response.data.msgcode == "401"){
+
+          console.log("401");
+          $ionicLoading.show({
+            template: '<ion-spinner icon="ios"></ion-spinner><p style="margin: 5px 0 0 0;"></p>',
+            duration: 1000
+          });
+            $state.go("welcome",{reload: true});
+            $ionicLoading.hide({
+              template: '<ion-spinner icon="ios"></ion-spinner><p style="margin: 5px 0 0 0;"></p>',
+              duration: 1000
+            });
+          }else{
+            $ionicPopup.alert({
+              title: "錯誤",
+              template: "資料傳送發生錯誤"
+          });
+          }
 
 
+      });
+    };
+    var AutoLogin = function () {
 
+      if (DeviceId != "") {
+        localStorage.setItem('Api-Token', ApiToken);
+        localStorage.setItem('Talk-Token', TalkToken);
+        localStorage.setItem('Device-Id', DeviceId);
+        console.log(DeviceId);
+        console.log(ApiToken);
+        console.log(TalkToken);
+        getAuth();
 
+      } else {
+        console.log(DeviceId);
+        console.log(ApiToken);
+        console.log(TalkToken);
 
-
+      }
+    }
+    AutoLogin();
 })

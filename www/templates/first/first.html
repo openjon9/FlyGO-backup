@@ -1,0 +1,11 @@
+<ion-view hide-nav-bar="true" ng-class="{'bg-gradient': activeIndex != 0}" vertical layout>
+    <div flex relative>
+      <ion-slide-box fit on-slide-changed="slideHasChanged($index)"  ng-init="activeIndex = 0" show-pager="false">
+        <ion-slide class="text-center flex-vertical-center">
+          <h1><img width="30%" height="30%" src="img/logo.png"></h1>
+          <p class="font-thin text-lg">FLY GO</p>
+        </ion-slide>
+
+      </ion-slide-box>
+    </div>
+  </ion-view>

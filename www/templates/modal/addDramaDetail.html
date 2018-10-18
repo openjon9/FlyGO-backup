@@ -6,109 +6,111 @@
     </button>
   </ion-header-bar>
   <form name="myLocation" novalidate>
-  <ion-content>
+    <ion-content>
 
-    <div class="list">
+      <div class="list">
 
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">地點名稱</span>
-        <label ng-show="myLocation.$submitted || myLocation.name.$touched">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">地點名稱</span>
+          <label ng-show="myLocation.$submitted || myLocation.name.$touched">
             <span ng-show="myLocation.name.$error.required" style="color:red">地點未填寫</span>
           </label>
-        <input type="text" placeholder="環球影城" name="name" ng-model="Location.name" required="">
-      </label>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">出發時間</span>
-        <label ng-show="myLocation.$submitted || myLocation.starttime.$touched">
+          <input type="text" placeholder="環球影城" name="name" ng-model="Location.name" required="">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">出發時間</span>
+          <label ng-show="myLocation.$submitted || myLocation.starttime.$touched">
             <span ng-show="myLocation.starttime.$error.required" style="color:red">出發時間未選擇</span>
             <!-- <span ng-show="myLocation.starttime.$error.pattern"  style="color:red">出發時間不正確</span> -->
           </label>
-        <input type="time" name="starttime"ng-model="Location.starttime"   required>
-      </label>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">結束時間</span>
-        <label ng-show="myLocation.$submitted || myLocation.endtime.$touched">
+          <input type="time" name="starttime" ng-model="Location.starttime" required>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">結束時間</span>
+          <label ng-show="myLocation.$submitted || myLocation.endtime.$touched">
             <span ng-show="myLocation.endtime.$error.required" style="color:red">出發時間未選擇</span>
             <!-- <span ng-show="myLocation.endtime.$error.pattern"  style="color:red">結束時間不正確</span> -->
           </label>
-        <input type="time"  name="endtime" ng-model="Location.endtime"   required>
-      </label>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">營業時間</span>
-        <input type="text" placeholder="08:00-22:30" ng-model="Location.opentime" >
-      </label>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">公休日</span>
-        <input type="text" placeholder="週一" ng-model="Location.holiday">
-      </label>
+          <input type="time" name="endtime" ng-model="Location.endtime" required>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">營業時間</span>
+          <input type="text" placeholder="08:00-22:30" ng-model="Location.opentime">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">公休日</span>
+          <input type="text" placeholder="週一" ng-model="Location.holiday">
+        </label>
 
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">天氣狀況</span>
-        <select ng-model="Location.weather">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">天氣狀況</span>
+          <select ng-model="Location.weather" name="weather">
             <option value="">--請選擇--</option>
-          <option ng-repeat="x in weather" value="{{x.value}}" >{{x.key}}</option>
-        </select>
+            <option ng-repeat="x in weather" value="{{x.value}}">{{x.key}}</option>
+          </select>
 
-      </label>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">跟大家說些甚麼</span>
-        <input type="text" placeholder="入場費：7900日圓" ng-model="Location.content">
-      </label>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">跟大家說些甚麼</span>
+          <input type="text" placeholder="入場費：7900日圓" ng-model="Location.content">
+        </label>
 
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">電話</span>
-        <input type="text" placeholder="0570-20-0606" ng-model="Location.tel">
-      </label>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">地址</span>
-        <input type="text" placeholder="大阪府大阪市此花區櫻島二丁目1番33號" ng-model="Location.address" >
-      </label>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Email</span>
-        <input type="email" placeholder="example@example.com" ng-model="Location.email">
-      </label>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">社群網站</span>
-        <input type="text" placeholder="www.facebook.com/UniversalStudiosJapan" ng-model="Location.social">
-      </label>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">交通方式</span>
-        <input type="text" placeholder="新幹線" ng-model="Location.traffic">
-      </label>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">花費時間</span>
-        <input type="text" placeholder="阪急梅田站徒步均約8分" ng-model="Location.traffictime">
-      </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">電話</span>
+          <input type="text" placeholder="0570-20-0606" ng-model="Location.tel">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">地址</span>
+          <input type="text" placeholder="大阪府大阪市此花區櫻島二丁目1番33號" ng-model="Location.address">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Email</span>
+          <input type="email" placeholder="example@example.com" ng-model="Location.email">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">社群網站</span>
+          <input type="text" placeholder="www.facebook.com/UniversalStudiosJapan" ng-model="Location.social">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">交通方式</span>
+          <input type="text" placeholder="新幹線" ng-model="Location.traffic">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">花費時間</span>
+          <input type="text" placeholder="阪急梅田站徒步均約8分" ng-model="Location.traffictime">
+        </label>
 
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">攜帶物品</span>
-        <input type="text" placeholder="哈利波特魔杖" ng-model="Location.baggage">
-      </label>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">行李尺寸</span>
-        <input type="text" placeholder="100cm" ng-model="Location.size">
-      </label>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">重量</span>
-        <input type="text" placeholder="0.3kg" ng-model="Location.weight">
-      </label>
-
-      <label class="item item-thumbnail-left" ng-show="Location.pic_info.pic !== undefined">
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">攜帶物品</span>
+          <input type="text" placeholder="哈利波特魔杖" ng-model="Location.baggage">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">行李尺寸</span>
+          <input type="text" placeholder="100cm" ng-model="Location.size">
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">重量</span>
+          <input type="text" placeholder="0.3kg" ng-model="Location.weight">
+        </label>
+        <label class="item item-input item-stacked-label">
+        <span class="input-label">地點說明</span>
+        <input type="text" placeholder="地點說明" ng-model="Location.pic_info.txt">
+        </label>
+        <div class="item item-thumbnail-left" ng-show="Location.pic_info.pic !== undefined" ng-click="openImage()">
           <img ng-show="Location.pic_info.pic !== undefined" ng-src="{{Location.pic_info.pic}}" style="height:50px;width:auto;">
-        <div class="wrapper-sm">
-            <input type="text" placeholder="地點說明" ng-model="Location.pic_info.txt">
         </div>
 
-      </label>
+      </div>
 
-    </div>
-  </ion-content>
-  <ion-footer-bar class="no-bg b-none bar-no-border">
-    <button class="button button-icon ion-camera"   ng-click="takePicture()"></button>
-    <div class="col text-right">
-      <button class="button button-positive button-clear" type="submit" ng-click="submitDramaLocation()" style="color:dodgerblue">完成</button>
-    </div>
 
-  </ion-footer-bar>
-</form>
+    </ion-content>
+    <ion-footer-bar class="no-bg b-none bar-no-border">
+      <button class="button button-icon ion-camera" ng-click="takePicture()"></button>
+      <button class="button button-icon ion-android-image" ng-click="takePictures()"></button>
+      <div class="col text-right">
+        <button class="button button-positive button-clear" type="submit" ng-click="submitDramaLocation()" style="color:dodgerblue">完成</button>
+      </div>
+
+    </ion-footer-bar>
+  </form>
 </ion-modal-view>

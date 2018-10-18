@@ -157,6 +157,23 @@ angular.module('starter.mydramalist.controllers', [])
     };
 
     //Modal建立
+    $ionicModal.fromTemplateUrl('templates/modal/imageModal.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function (modal) {
+
+      $scope.imagemodal = modal;
+
+    });
+
+    $scope.openImage=function(){
+      console.log(1);
+      $scope.imagemodal.show();
+    }
+    $scope.closeImage=function(){
+      $scope.imagemodal.hide();
+    }
+
     $ionicModal.fromTemplateUrl('templates/modal/addDrama.html', {
       scope: $scope,
       animation: 'slide-in-up'
@@ -203,6 +220,7 @@ angular.module('starter.mydramalist.controllers', [])
         }
       }, null, function (response) {
         console.log(response.data.data);
+
         $scope.newPost.country = response.data.data.country;
         $scope.newPost.lat = response.data.data.lat;
         $scope.newPost.lng = response.data.data.lng;
@@ -211,8 +229,15 @@ angular.module('starter.mydramalist.controllers', [])
         $scope.newPost.place = response.data.data.place;
         $scope.newPost.num = $scope.Numbers[response.data.data.num - 1]
         $scope.newPost.ispublic = response.data.data.ispublic == 1 ? true : false;
-        $scope.newPost.imgSrc=response.data.data.cover_pic_url;
-        $scope.newPost.imgName=response.data.data.cover_pic;
+        try{
+          var imgsrc=$scope.newPost.imgSrc=response.data.data.cover_pic_url;
+        }catch{
+          imgsrc="";
+          imgName="";
+        }
+
+        $scope.newPost.imgSrc=imgsrc;
+        $scope.newPost.imgName=imgName;
         $scope.newPost.id=id;
       });
     };
@@ -250,7 +275,6 @@ angular.module('starter.mydramalist.controllers', [])
       });
       confirm.then(function (res) {
         if (res) {
-
           $scope.editmodal.hide();
         }
       });
@@ -303,13 +327,13 @@ angular.module('starter.mydramalist.controllers', [])
       // sourceType
       var options = {
         quality: 100,
-        targetWidth: 500,
-        targetHeight: 500,
+        targetWidth: 1920,
+        targetHeight: 1080,
         sourceType: 1,
         destinationType: Camera.DestinationType.DATA_URL,
         sourceType: Camera.PictureSourceType.CAMERA,
         encodingType: Camera.EncodingType.JPEG,
-        allowEdit: false,
+        allowEdit: true,
         popoverOptions: CameraPopoverOptions,
         correctOrientation:true,
         //saveToPhotoAlbum: true,
@@ -332,20 +356,14 @@ angular.module('starter.mydramalist.controllers', [])
           }
         }, {
           }, function (response) {
-            $ionicLoading.show({
-              template: '<ion-spinner icon="ios"></ion-spinner><p style="margin: 5px 0 0 0;"></p>',
-              duration: 2000
-            });
+
             console.log(response.data.data)
             var img = response.data.data.pic.dir + response.data.data.pic.name;
             console.log(img);
             $scope.newPost.imgSrc = img;
             $scope.newPost.imgName=response.data.data.pic.name;
             console.log($scope.newPost.imgName);
-            $ionicLoading.hide({
-              template: '<ion-spinner icon="ios"></ion-spinner><p style="margin: 5px 0 0 0;"></p>',
-              duration: 1000
-            });
+
           });
 
       }, function (err) {
@@ -357,13 +375,13 @@ angular.module('starter.mydramalist.controllers', [])
       // sourceType
       var options = {
         quality: 100,
-        targetWidth: 500,
-        targetHeight: 500,
+        targetWidth: 1920,
+        targetHeight: 1080,
         sourceType: 1,
         destinationType: Camera.DestinationType.DATA_URL,
         sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
         encodingType: Camera.EncodingType.JPEG,
-        allowEdit: false,
+        allowEdit: true,
         popoverOptions: CameraPopoverOptions,
         //saveToPhotoAlbum: true,
 
@@ -386,7 +404,7 @@ angular.module('starter.mydramalist.controllers', [])
           }, function (response) {
             $ionicLoading.show({
               template: '<ion-spinner icon="ios"></ion-spinner><p style="margin: 5px 0 0 0;"></p>',
-              duration: 2000
+              duration: 1000
             });
             console.log(response.data.data)
             var img = response.data.data.pic.dir + response.data.data.pic.name;
@@ -440,6 +458,7 @@ angular.module('starter.mydramalist.controllers', [])
               duration: 2000
             });
             $scope.editmodal.hide();
+
             $ionicLoading.hide({
               template: '<ion-spinner icon="ios"></ion-spinner><p style="margin: 5px 0 0 0;"></p>',
               duration: 1000

@@ -76,7 +76,7 @@ angular.module('starter.services', [])
     return {}
 })
 
-.factory('httpService',function($http, $ionicPopup){
+.factory('httpService',function($http, $ionicPopup,$ionicLoading){
   var apiURI = "http://59.126.17.211:8082/gofly/public/api";
 
   var defaultHeader = {
@@ -105,9 +105,14 @@ angular.module('starter.services', [])
                   return str.join("&");
               },
               data: obj.data,
-              url: apiURI + path
+              url: apiURI + path,
+
           }).then(function successCallback(response) {
               //console.log(response.data.success +' '+ response.data.msgcode);
+              $ionicLoading.show({
+                template: '<ion-spinner icon="ios"></ion-spinner><p style="margin: 5px 0 0 0;"></p>',
+                duration: 1500
+              })
               if(response.data.success | response.data.msgcode == "0000") {
                   if(message instanceof Object) {
                       var alertPopup = $ionicPopup.alert({
@@ -131,13 +136,17 @@ angular.module('starter.services', [])
                       template: response.data.msg
                   });
               }
-
+              $ionicLoading.hide({
+                template: '<ion-spinner icon="ios"></ion-spinner><p style="margin: 5px 0 0 0;"></p>',
+                duration: 1000
+              })
 
           }, function errorCallback(response) {
               $ionicPopup.alert({
                   title: "錯誤",
-                  template: "資料傳送發生錯誤"
+                  template: "資料傳送發生錯誤"+response
               });
+              console.log(response);
           });
 
       },
@@ -189,10 +198,12 @@ angular.module('starter.services', [])
 
 
           }, function errorCallback(response) {
+            console.log(response)
               $ionicPopup.alert({
                   title: "錯誤",
                   template: "資料傳送發生錯誤"
               });
+
           });
       }
   }

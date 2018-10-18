@@ -5,27 +5,27 @@ navigation history that also transitions its views in and out.
 -->
 <ion-tabs class="tabs-icon-top tabs-color-active-calm tabs-light"  >
 
-    <ion-tab title="首頁" icon-off="ion-ios-book-outline" icon-on="ion-ios-book" href="#/tab/index" badge="0" badge-style="badge-assertive">
+    <ion-tab title="首頁" icon-off="ion-ios-book-outline" icon-on="ion-ios-book" ng-click="goHome()" badge="0" badge-style="badge-assertive">
       <ion-nav-view name="index"></ion-nav-view>
     </ion-tab>
 
-  <ion-tab title="劇本" icon-off="ion-ios-paper-outline" icon-on="ion-ios-paper" href="#/tab/home" badge="0" badge-style="badge-assertive">
+  <ion-tab title="劇本" icon-off="ion-ios-paper-outline" icon-on="ion-ios-paper" ng-click="goDrama()" badge="0" badge-style="badge-assertive">
     <ion-nav-view name="home"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab title="商品" icon-off="ion-ios-list-outline" icon-on="ion-ios-list" href="#/tab/product" badge="0" badge-style="badge-assertive">
+  <ion-tab title="商品" icon-off="ion-ios-list-outline" icon-on="ion-ios-list" ng-click="goProductList()" badge="0" badge-style="badge-assertive">
     <ion-nav-view name="product"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab title="清單" icon-off="ion-ios-heart-outline" icon-on="ion-ios-heart" href="#/tab/shopping" badge="0" badge-style="badge-assertive">
+  <ion-tab title="清單" icon-off="ion-ios-heart-outline" icon-on="ion-ios-heart" ng-click="goWishList()" badge="0" badge-style="badge-assertive">
     <ion-nav-view name="shopping"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab title="朋友" icon-off="ion-ios-people-outline" icon-on="ion-ios-people" href="#/tab/network">
+  <ion-tab title="朋友" icon-off="ion-ios-people-outline" icon-on="ion-ios-people" ng-click="goFriends()">
     <ion-nav-view name="network"></ion-nav-view>
   </ion-tab>
 
-  <ion-tab title="訊息" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" href="#/tab/messaging" badge="tabTip.messageNum" badge-style="badge-assertive">
+  <ion-tab title="訊息" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" ng-click="goMessages()" badge="tabTip.messageNum" badge-style="badge-assertive">
     <ion-nav-view name="messaging"></ion-nav-view>
   </ion-tab>
 <!--
