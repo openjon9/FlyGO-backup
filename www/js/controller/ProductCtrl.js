@@ -195,9 +195,14 @@ angular.module('starter.product.controllers', [])
             "Api-Token": localStorage.getItem("Api-Token")
         }
     }, null, function (response) {
-        if(response.data.data.length>1){
+        if(response.data.data.length>0){
           $scope.shoppingDetail = response.data.data;
+          console.log($scope.shoppingDetail);
+
           $scope.default_list_id = $scope.shoppingDetail[0].list_id;
+          console.log($scope.shoppingDetail[0].list_id);
+        }else{
+          console.log("f")
         }
 
     });
@@ -210,7 +215,7 @@ angular.module('starter.product.controllers', [])
         $scope.data.product = { title: obj.title, price: obj.price, currency: obj.currency, eprice: obj.eprice};//{ title: $scope.detail.title, price: $scope.detail.eprice};//product;
         $scope.data.productOption = 1;
         $scope.data.productQuantity = 1;
-
+        console.log($scope.default_list_id);
         $scope.addList = {
             "num": 1,
             "list_id": $scope.default_list_id
