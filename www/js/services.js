@@ -77,7 +77,7 @@ angular.module('starter.services', [])
 })
 
 .factory('httpService',function($http, $ionicPopup,$ionicLoading){
-  var apiURI = "http://59.126.17.211:8082/gofly/public/api";
+  var apiURI = "http://59.126.17.211:8082/Danainitrip/public/api";
 
   var defaultHeader = {
 

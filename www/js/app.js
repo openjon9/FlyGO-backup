@@ -72,7 +72,11 @@ angular.module('starter', [
       $httpProvider.defaults.headers.patch = {};
       */
   })
+  .config(function($sceDelegateProvider){
 
+    $sceDelegateProvider.resourceUrlWhitelist(['self','https://maps.google.com.tw/**','https://maps.google.com.tw/maps/**','https://www.youtube.com/**',"https://m.youtube.com/**"]);
+
+  })
 
   .config(function ($stateProvider, $urlRouterProvider) {
 

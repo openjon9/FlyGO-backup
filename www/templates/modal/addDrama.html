@@ -13,52 +13,85 @@
 
         <div class="item item-input item-stacked-label">
           <span class="input-label">劇本標題</span>
-          <label ng-show="mydrama.$submitted || mydrama.title.$touched">
+          <label ng-show="mydrama.$submitted || mydrama.title.$touched" style="position:absolute;left:35vw;top:10px;">
             <span ng-show="mydrama.title.$error.required" style="color:red">標題未填寫</span>
           </label>
-
           <input type="text" name="title" placeholder="大阪自由行" ng-model='newPost.title' required="">
+
           <div class="thumb-xl"  ng-click="openImage()">
-              <img ng-show="newPost.imgSrc !== undefined" ng-src="{{newPost.imgSrc}}" class="thumb-xl">
-            </div>
+            <img ng-show="newPost.imgSrc !== undefined" ng-src="{{newPost.imgSrc}}" class="thumb-xl" style="width:80px;height:80px;">
+          </div>
+
+          <label ng-show="mydrama.$submitted && newPost.imgSrc === undefined">
+            <span style="width:calc((100vw + 2px - 16px) * 0.35);height:0px;display:inline-block;"></span>
+            <span style="color:red;position:absolute;left:35vw;bottom:5px;">未上傳圖片</span>
+          </label>
         </div>
-
-
 
 
 
         <label class="item item-input item-stacked-label">
           <span class="input-label">列表簡介</span>
-          <label ng-show="mydrama.$submitted || mydrama.brief.$touched">
+          <label ng-show="mydrama.$submitted || mydrama.brief.$touched" style="position:absolute;left:35vw;">
             <span ng-show="mydrama.brief.$error.required" style="color:red">簡介未填寫</span>
           </label>
-          <input type="text"  name="brief" placeholder="大阪是所有新手旅遊者可選擇的好地方" ng-model="newPost.brief" required="">
 
+          <input type="text"  name="brief" placeholder="大阪是所有新手旅遊者可選擇的好地方" ng-model="newPost.brief" required="">
         </label>
+
+
 
         <label class="item item-input item-stacked-label">
           <span class="input-label">內頁簡介</span>
-          <label ng-show="mydrama.$submitted || mydrama.content.$touched">
+
+          <label ng-show="mydrama.$submitted || mydrama.content.$touched" style="position:absolute;left:35vw;">
             <span ng-show="mydrama.content.$error.required" style="color:red">內頁未填寫</span>
           </label>
+
           <input type="text" placeholder="此地方適合全家大小遊玩" ng-model="newPost.content" name="content">
         </label>
+
+
+
         <label class="item item-input item-select">
           <span class="input-label">國家</span>
-          <select ng-model="newPost.country">
+
+          <label ng-show="mydrama.$submitted || mydrama.country.$touched" style="position:absolute;left:35vw;">
+            <span ng-show="mydrama.country.$error.required" style="color:red">請選擇國家</span>
+          </label>
+
+          <select ng-model="newPost.country" name="country" required="" style="width: 33%; direction: unset;">
             <option value="">請選擇</option>
             <option ng-repeat="x in countryList" value="{{x.code}}">{{x.name}}</option>
           </select>
-
         </label>
+
+
+
         <label class="item item-input item-stacked-label">
           <span class="input-label">地點</span>
-          <input type="text" placeholder="大阪" ng-model='newPost.place'>
+
+          <label ng-show="mydrama.$submitted || mydrama.place.$touched" style="position:absolute;left:35vw;">
+            <span ng-show="mydrama.place.$error.required" style="color:red">地點未填寫</span>
+          </label>
+
+          <input type="text" placeholder="大阪" name="place" required="" ng-model="newPost.place">
         </label>
+
+
+
         <label class="item item-input item-select">
           <span class="input-label">人數</span>
-          <select ng-model='newPost.num' ng-options="options as options for options in Numbers"></select>
+
+          <label ng-show="mydrama.$submitted || mydrama.num.$touched" style="position:absolute;left:35vw;">
+            <span ng-show="mydrama.num.$error.required" style="color:red">請選擇人數</span>
+          </label>
+
+          <select ng-model="newPost.num" name="num" required="" ng-options="options as options for options in Numbers"></select>
         </label>
+
+
+
         <label class="item item-input item-stacked-label">
           <span class="input-label">標籤</span>
           <input type="text" placeholder="日本自由行">

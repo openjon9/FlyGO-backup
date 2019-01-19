@@ -3009,9 +3009,7 @@ time, mark, audio, video {
   border: 0;
   vertical-align: baseline;
   font: inherit;
-  font-size: 100%;
-  font-family: Microsoft JhengHei;
-}
+  font-size: 100%; }
 
 ol, ul {
   list-style: none; }
@@ -3046,7 +3044,7 @@ script {
    Base
    ========================================================================== */
 /**
- * 1. Set default font family to Microsoft JhengHei.
+ * 1. Set default font family to sans-serif.
  * 2. Prevent iOS text size adjust after orientation change, without disabling
  *  user zoom.
  */
@@ -3055,7 +3053,7 @@ html {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  font-family: Microsoft JhengHei;
+  font-family: sans-serif;
   /* 1 */
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
@@ -3340,7 +3338,7 @@ body,
   color: #000;
   word-wrap: break-word;
   font-size: 14px;
-  font-family: "Helvetica Neue", "Roboto", "Segoe UI", Microsoft JhengHei;
+  font-family: "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
   line-height: 20px;
   text-rendering: optimizeLegibility;
   -webkit-backface-visibility: hidden;
@@ -3593,7 +3591,7 @@ h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   color: #000;
   font-weight: 500;
-  font-family: "Helvetica Neue", "Roboto", "Segoe UI", Microsoft JhengHei;
+  font-family: "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
   line-height: 1.2; }
   h1 small, h2 small, h3 small, h4 small, h5 small, h6 small,
   .h1 small, .h2 small, .h3 small, .h4 small, .h5 small, .h6 small {
@@ -3810,43 +3808,35 @@ a.subdued {
   .action-sheet-open .action-sheet-backdrop {
     pointer-events: auto; }
 
-    .platform-android .action-sheet-backdrop.active {
-      background-color: rgba(0, 0, 0, 0.1); }
-          .platform-android .action-sheet {
-      align-content: center;
-      margin:auto;
-      max-width: 96vw;
-      border-radius: 5px;
-      /*margin: 0;*/
-      margin-bottom: 10px;}
-          .platform-android .action-sheet .action-sheet-title, .platform-android .action-sheet .button {
-      text-align: left;
-      /*border-color: #e2e2e2;*/
-      font-size: 16px;
-      color: inherit;}
-          .platform-android .action-sheet .action-sheet-title {
-      font-size: 14px;
-      padding: 16px;
-      color: #666; }
-          .platform-android .action-sheet .button {
-      border-color: #e2e2e2;
-      padding-left: 16px;
-      color: #104e89;
-          }
-          .platform-android .action-sheet .button.destructive {
-      color: red;
-          }
-          .platform-android .action-sheet .button.active, .platform-android .action-sheet .button.activated {
-      background: #e8e8e8; }
-          .platform-android .action-sheet-group {
-      /*margin: 0;*/
-      border-radius: 0;
-      background-color: #fafafa; }
-          .platform-android .action-sheet-cancel {
-      display: none;
-          }
-          .platform-android .action-sheet-has-icons .button {
-      padding-left: 56px; }
+.platform-android .action-sheet-backdrop.active {
+  background-color: rgba(0, 0, 0, 0.2); }
+
+.platform-android .action-sheet {
+  margin: 0; }
+  .platform-android .action-sheet .action-sheet-title,
+  .platform-android .action-sheet .button {
+    text-align: left;
+    border-color: transparent;
+    font-size: 16px;
+    color: inherit; }
+  .platform-android .action-sheet .action-sheet-title {
+    font-size: 14px;
+    padding: 16px;
+    color: #666; }
+  .platform-android .action-sheet .button.active,
+  .platform-android .action-sheet .button.activated {
+    background: #e8e8e8; }
+
+.platform-android .action-sheet-group {
+  margin: 0;
+  border-radius: 0;
+  background-color: #fafafa; }
+
+.platform-android .action-sheet-cancel {
+  display: none; }
+
+.platform-android .action-sheet-has-icons .button {
+  padding-left: 56px; }
 
 .backdrop {
   position: fixed;
@@ -5074,7 +5064,7 @@ ion-tabs.tabs-color-active-dark .tab-item {
   white-space: nowrap;
   font-weight: 400;
   font-size: 14px;
-  font-family: "Helvetica Neue", "Roboto", "Segoe UI", Microsoft JhengHei;
+  font-family: "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
   opacity: 0.7; }
   .tab-item:hover {
     cursor: pointer; }
@@ -7500,7 +7490,7 @@ input,
 button,
 select,
 textarea {
-  font-family: "Helvetica Neue", "Roboto", "Segoe UI", Microsoft JhengHei; }
+  font-family: "Helvetica Neue", "Roboto", "Segoe UI", sans-serif; }
 
 .item-input {
   display: -webkit-box;

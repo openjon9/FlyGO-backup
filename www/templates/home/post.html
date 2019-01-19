@@ -17,7 +17,7 @@
         <h6 style="height:25px;line-height:20px;font-size:14px;margin:0;">{{drama.createtime}}</h6>
       </span>
     </h6>
-    <img ng-show="drama.cover_pic" class="full-image" src="{{ drama.cover_pic}}">
+    <img ng-show="drama.cover_pic" class="full-image" src="{{ drama.cover_pic_url}}">
     <div style="margin:20px;">
       <h5>{{ drama.country_name }} / {{ drama.place }}</h5>
       <p ng-bind-html="drama.content"></p>
@@ -31,7 +31,7 @@
               width="100%"
               height="250"
               frameborder="0" style="border:0"
-              src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCvTRJ2AR3Dl5iMKXH3-f4fHnsIGWjmTis&zoom=16&region=tw&q=韓國首爾中區明洞">
+              ng-src={{googleurl.src}}>
       </iframe>
       <!--
             <div class="header" style="background:url('./img/travel/t1/d1/6.jpg');">
@@ -123,11 +123,15 @@
 
                 <div>
                   <div class="things">
-                    <img ng-src="{{pics.pic}}" ng-repeat="pics in loc.pic_info" alt="" />
+                      <img ng-src="{{pics.pic}}" ng-repeat="pics in loc.pic_info" alt=""  ng-click="openImageDetail(loc.pic_info,pics.pic)"/>
                   </div>
                 </div>
-
-
+                <div class="things" ng-show="loc.video_id !==''">
+                  <iframe  width="100%" height="200" frameborder="0" style="border:0"  allowfullscreen="true"  ng-src="{{getUrl(loc.video_id)}}">
+                  </iframe>
+                </div>
+                <div class="desc">
+                  </div>
 
 
                 <div class="desc" ng-if="loc.address">
@@ -161,13 +165,14 @@
                   <h4>{{loc.starttime}} - {{loc.endtime}}</h4>
                 </div>
 
+
                 <div class="desc" ng-if="loc.traffic">
                   <h3>交通方式：</h3>
                   <h4>{{loc.traffic}}</h4>
                 </div>
 
                 <div class="desc" ng-if="loc.traffictime">
-                  <h3>交通工具：</h3>
+                  <h3>花費時間：</h3>
                   <h4>{{loc.traffictime}}</h4>
                 </div>
 

@@ -1,12 +1,16 @@
 angular.module('starter.index.controllers', [])
-  .controller('indexCtrl', function ($scope, httpService, $timeout,  $ionicSlideBoxDelegate,$ionicModal) {
+  .controller('indexCtrl', function ($scope, httpService, $timeout,  $ionicSlideBoxDelegate,$ionicModal,$ionicPopup) {
     $ionicSlideBoxDelegate.update();
     $scope.indexHot=[];
     $scope.indexSpecial=[];
     $scope.indexJP=[];
     $scope.indexKR=[];
     $scope.banner=[];
-
+    $scope.img=[];
+    $scope.googleurl=[];
+    $scope.getUrl = function (id) {
+      return 'https://www.youtube.com/embed/'+id+'?rel=0'
+    }
    //精選
     var GetSpecialList=function(){
       httpService.get("/script/getList?page=1&pageSize=10&special=1", {
@@ -21,6 +25,8 @@ angular.module('starter.index.controllers', [])
 
       });
     }
+
+
 
     //熱門
     var GetHotIndexList=function(){
@@ -89,6 +95,16 @@ angular.module('starter.index.controllers', [])
       $scope.DetailModal = modal;
 
     });
+
+    $ionicModal.fromTemplateUrl('templates/modal/ImageDetailModal.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function (modal) {
+
+      $scope.ImageDetail = modal;
+
+    });
+
     var getDetail=function(id){
       httpService.get("/script/getListDetail/" + id, {
         header: {
@@ -97,6 +113,9 @@ angular.module('starter.index.controllers', [])
         }
       }, null, function (response) {
         $scope.drama = response.data.data;
+        var key="https://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&z=16&output=embed&t=h&q="
+        key+=$scope.drama.lng+","+$scope.drama.lat;
+        $scope.googleurl={src:key};
         console.log($scope.drama);
 
       });
@@ -108,6 +127,65 @@ angular.module('starter.index.controllers', [])
     $scope.closeDetail=function(){
       $scope.DetailModal.hide();
     }
+
+    $scope.openImageDetail = function (pics,pic) {
+
+      $scope.pagerIndex=0;
+        angular.forEach(pics,function(value,key){
+          console.log(key+':'+value);
+          if(value.pic==pic){
+            $scope.pagerIndex=key;
+          }
+
+        })
+        $scope.img=pics;
+      console.log($scope.pagerIndex);
+      console.log($scope.img);
+
+      $scope.ImageDetail.show();
+      $ionicSlideBoxDelegate.slide($scope.pagerIndex);
+    }
+    $scope.closeImageDetail = function () {
+      $scope.ImageDetail.hide();
+    }
+    $scope.showFilterPopup = function () {
+      var myPopup = $ionicPopup.show({
+        cssClass: 'add-to-cart-popup',
+        templateUrl: 'templates/popup/filter_drama.html',
+        title: '進階搜尋',
+        scope: $scope,
+        buttons: [
+          { text: '', type: 'close-popup ion-ios-close-outline' },
+
+          {
+            text: '搜尋', onTap: function (e) {
+              //console.log($scope.filterParams);
+              return $scope.filterParams;
+            }
+          }
+
+        ]
+      });
+      myPopup.then(function (res) {
+        console.log(res);
+        if (res) {
+          $ionicLoading.show({
+            template: '<ion-spinner icon="ios"></ion-spinner><p style="margin: 5px 0 0 0;">搜尋中</p>',
+            duration: 1000
+          });
+
+          $scope.nowPage = 1;
+
+          $scope.loadingPage = false;
+          $scope.productList = [];
+
+
+
+        } else {
+          console.log('Popup closed');
+        }
+      });
+    };
 
 
 

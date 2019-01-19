@@ -1,5 +1,5 @@
 angular.module('starter.mydramalist.controllers', [])
-  .controller('MyDramaListCtrl', function ($rootScope, $state, $cordovaCamera, $scope, $ionicModal, $ionicPopup, httpService, $ionicLoading,$cordovaGeolocation, $ionicScrollDelegate, $timeout, $filter, $ionicActionSheet, $cordovaFileTransfer) {
+  .controller('MyDramaListCtrl', function ($rootScope, $state, $cordovaCamera, $scope, $ionicModal, $ionicPopup, httpService, $ionicLoading, $cordovaGeolocation, $ionicScrollDelegate, $timeout, $filter, $ionicActionSheet, $cordovaFileTransfer,$ionicSlideBoxDelegate) {
 
 
     $scope.nowPage = 1;
@@ -12,7 +12,7 @@ angular.module('starter.mydramalist.controllers', [])
     $scope.modal = [];
 
     $scope.newPost = {
-      id:"",
+      id: "",
       imgSrc: null,
       country: "",
       place: "",
@@ -23,24 +23,24 @@ angular.module('starter.mydramalist.controllers', [])
       content: "",
       num: "",
       ispublic: true,
-      imgName:"",
+      imgName: "",
     }
     //取座標
-    $scope.getGeoLocation=function(){
-      var posOptions = {timeout: 10000, enableHighAccuracy: false};
+    $scope.getGeoLocation = function () {
+      var posOptions = { timeout: 10000, enableHighAccuracy: false };
       $cordovaGeolocation
         .getCurrentPosition(posOptions)
 
         .then(function (position) {
           console.log(position);
 
-          $scope.newPost.lat=position.coords.latitude;
-          $scope.newPost.long=position.coords.longitude;
-          console.log("lat:"+$scope.newPost.lat);
-          console.log("long:"+ $scope.newPost.long);
+          $scope.newPost.lat = position.coords.latitude;
+          $scope.newPost.long = position.coords.longitude;
+          console.log("lat:" + $scope.newPost.lat);
+          console.log("long:" + $scope.newPost.long);
           console.log("end");
-        }, function(err) {
-         console.log(err);
+        }, function (err) {
+          console.log(err);
         });
     };
 
@@ -166,11 +166,11 @@ angular.module('starter.mydramalist.controllers', [])
 
     });
 
-    $scope.openImage=function(){
-      console.log(1);
+    $scope.openImage = function () {
+
       $scope.imagemodal.show();
     }
-    $scope.closeImage=function(){
+    $scope.closeImage = function () {
       $scope.imagemodal.hide();
     }
 
@@ -212,7 +212,7 @@ angular.module('starter.mydramalist.controllers', [])
       $scope.newPost = [];
     };
 
-    var getDramaDetail=function(id){
+    var getDramaDetail = function (id) {
       httpService.get("/script/getListDetail/" + id, {
         header: {
           "Device-Id": localStorage.getItem("Device-Id"),
@@ -229,16 +229,26 @@ angular.module('starter.mydramalist.controllers', [])
         $scope.newPost.place = response.data.data.place;
         $scope.newPost.num = $scope.Numbers[response.data.data.num - 1]
         $scope.newPost.ispublic = response.data.data.ispublic == 1 ? true : false;
-        try{
-          var imgsrc=$scope.newPost.imgSrc=response.data.data.cover_pic_url;
-        }catch{
-          imgsrc="";
-          imgName="";
+        // $scope.newPost = {
+        //   ...response.data.data,
+        //   imgName: response.data.data.cover_pic,
+        //   imgSrc: response.data.data.cover_pic_url,
+        //   num: $scope.Numbers[response.data.data.num - 1],
+        //   ispublic: response.data.data.ispublic == 1 ? true : false
+        // }
+        console.log($scope.newPost)
+        var imgsrc, imgName = ''
+        try {
+          imgsrc = response.data.data.cover_pic_url;
+          imgName = response.data.cover_pic;
+        } catch {
+          imgsrc = '';
+          imgName = '';
         }
 
-        $scope.newPost.imgSrc=imgsrc;
-        $scope.newPost.imgName=imgName;
-        $scope.newPost.id=id;
+        $scope.newPost.imgSrc = imgsrc;
+        $scope.newPost.imgName = imgName;
+        $scope.newPost.id = id;
       });
     };
 
@@ -267,7 +277,7 @@ angular.module('starter.mydramalist.controllers', [])
       });
     };
 
-    $scope.closeEdit= function () {
+    $scope.closeEdit = function () {
       var confirm = $ionicPopup.confirm({
         title: "尚未完成劇本,是否離開?",
         cancelText: "否",
@@ -281,6 +291,7 @@ angular.module('starter.mydramalist.controllers', [])
     };
     //送出劇本
     $scope.submitDrama = function () {
+      console.log($scope.newPost)
       if (!$scope.newPost.title == "" && !$scope.newPost.country == "" && !$scope.newPost.imgSrc == "") {
         console.log("post");
         httpService.post("/script/create", {
@@ -304,7 +315,7 @@ angular.module('starter.mydramalist.controllers', [])
             title: "劇本建立",
             content: "成功"
           }, function (response) {
-
+            console.log(response)
             $ionicLoading.show({
               template: '<ion-spinner icon="ios"></ion-spinner><p style="margin: 5px 0 0 0;"></p>',
               duration: 1000
@@ -335,7 +346,7 @@ angular.module('starter.mydramalist.controllers', [])
         encodingType: Camera.EncodingType.JPEG,
         allowEdit: true,
         popoverOptions: CameraPopoverOptions,
-        correctOrientation:true,
+        correctOrientation: true,
         //saveToPhotoAlbum: true,
 
       };
@@ -352,6 +363,7 @@ angular.module('starter.mydramalist.controllers', [])
             "Api-Token": localStorage.getItem("Api-Token")
           },
           data: {
+            type:"script_cover",
             pic: this.imageName,
           }
         }, {
@@ -361,7 +373,7 @@ angular.module('starter.mydramalist.controllers', [])
             var img = response.data.data.pic.dir + response.data.data.pic.name;
             console.log(img);
             $scope.newPost.imgSrc = img;
-            $scope.newPost.imgName=response.data.data.pic.name;
+            $scope.newPost.imgName = response.data.data.pic.name;
             console.log($scope.newPost.imgName);
 
           });
@@ -398,7 +410,9 @@ angular.module('starter.mydramalist.controllers', [])
             "Api-Token": localStorage.getItem("Api-Token")
           },
           data: {
+            type: "script_cover",
             pic: this.imageName,
+
           }
         }, {
           }, function (response) {
@@ -410,22 +424,22 @@ angular.module('starter.mydramalist.controllers', [])
             var img = response.data.data.pic.dir + response.data.data.pic.name;
             console.log(img);
             $scope.newPost.imgSrc = img;
-            $scope.newPost.imgName=response.data.data.pic.name;
+            $scope.newPost.imgName = response.data.data.pic.name;
             console.log($scope.newPost.imgName);
             $ionicLoading.hide({
               template: '<ion-spinner icon="ios"></ion-spinner><p style="margin: 5px 0 0 0;"></p>',
               duration: 1000
             });
           });
-
       }, function (err) {
         console.log(err);
       });
 
     }
     //編輯
-    $scope.EditDrama=function(){
-      if (!$scope.newPost.title == "" && !$scope.newPost.country == "" && !$scope.newPost.imgSrc == "") {
+    $scope.EditDrama = function () {
+      console.log($scope.newPost)
+      if (!$scope.newPost.title == "" && !$scope.newPost.brief == "" && !$scope.newPost.country == "" && !$scope.newPost.imgSrc == "") {
         console.log("post");
         httpService.post("/script/edit", {
           header: {
@@ -434,7 +448,7 @@ angular.module('starter.mydramalist.controllers', [])
           },
 
           data: {
-            id:$scope.newPost.id,
+            id: $scope.newPost.id,
             cover_pic: $scope.newPost.imgName,
             country: $scope.newPost.country,
             place: $scope.newPost.place,
@@ -488,6 +502,7 @@ angular.module('starter.mydramalist.controllers', [])
           getDramaDetail(id);
 
           console.log(id);
+          
           $scope.editmodal.show();
           $scope.modal.title = "編輯劇本";
 

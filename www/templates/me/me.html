@@ -25,12 +25,18 @@
   </ion-header-bar>
 
   <ion-content class="bg-muted">
-    <div class="cover-image has-bg" ng-style="{'background-image': 'url(\'' + 'img/bg.png' + '\')'}"></div>
+      <div class="cover-image has-bg" ng-style="{'background-image': 'url(\'' + 'img/bg.png' + '\')'}"></div>
+    <!-- <div class="cover-image has-bg profile-cover" style="position: relative;" ng-style="{'background-image': 'url(' + profile.cover + ')' }">
+      <button class="button-icon ion-edit calm" ng-click="changePic('cover')" ng-if="isMyInfo"></button>
+    </div> -->
 
     <div class="card profile-top text-center">
       <div class="item item-text-wrap">
         <button class="button button-icon ion-edit calm" ng-click="updateProfilePopup()" ng-if="isMyInfo"></button>
-        <img src="img/adam.png" class="avatar-profile" alt="">
+        <!-- <img src="img/adam.png" class="avatar-profile" alt=""> -->
+        <div class="avatar-profile profile-pic" ng-style="{'background-image': 'url(' + profile.pic + ')' }">
+          <button class="button-icon ion-edit calm" ng-click="changePic('pic')" ng-if="isMyInfo"></button>
+        </div>
         <h2 class="font-thin">{{profile.acc}} ({{profile.gender=="1" ? "男":"女"}})</h2>
         <div class="text-md">{{profile.username}}</div>
         <div class="text-md">{{profile.nickname}}</div>
@@ -62,12 +68,12 @@
     </div>
 -->
     <div class="card">
-      <div class="item item-divider bg-white">
+      <!-- <div class="item item-divider bg-white">
         清單列表 ({{shoppingList.length}})
       </div>
       <div class="item item-divider bg-white">
         我的劇本 (0)
-      </div>
+      </div> -->
 
 
       <div class="item item-icon-right" ng-repeat="item in shoppingList" ui-sref="tab.shoppingDetail({list_id: item.list_id})">

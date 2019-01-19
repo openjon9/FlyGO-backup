@@ -11,7 +11,7 @@ angular.module('starter.first.controllers', [])
     var DeviceId = localStorage.getItem("Device-Id");
     var ApiToken = localStorage.getItem("Api-Token");
     var TalkToken = localStorage.getItem("Talk-Token");
-    var URI="http://59.126.17.211:8082/gofly/public/api"
+    var URI="http://59.126.17.211:8082/Danainitrip/public/api"
     var path="/friends/userList"
     var getAuth=function(){
         $http({

@@ -1,15 +1,15 @@
 <ion-modal-view>
-<!--
+  <!--
   <ion-nav-buttons side="secondary">
     <button class="button button-icon ion-ios-more"></button>
   </ion-nav-buttons>
 -->
-<ion-header-bar class="bar-calm">
-  <div class="h1 title">{{drama.title}}</div>
-  <button class="button button-clear" ng-click="closeDetail()">
+  <ion-header-bar class="bar-calm">
+    <div class="h1 title">{{drama.title}}</div>
+    <button class="button button-clear" ng-click="closeDetail()">
       <i class="icon ion-android-close"></i>
-  </button>
-</ion-header-bar>
+    </button>
+  </ion-header-bar>
   <ion-content>
 
     <h6 class="product-title" style="width:100%;border:0;height:50px;margin:10px;">
@@ -19,7 +19,7 @@
         <h6 style="height:25px;line-height:20px;font-size:14px;margin:0;">{{drama.createtime}}</h6>
       </span>
     </h6>
-    <img ng-show="drama.cover_pic" class="full-image" src="{{ drama.cover_pic}}">
+    <img ng-show="drama.cover_pic" class="full-image" src="{{ drama.cover_pic_url}}">
     <div style="margin:20px;">
       <h5>{{ drama.country_name }} / {{ drama.place }}</h5>
       <p ng-bind-html="drama.content"></p>
@@ -29,11 +29,7 @@
     <div class="timeline-block">
 
 
-      <iframe
-              width="100%"
-              height="250"
-              frameborder="0" style="border:0"
-              src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCvTRJ2AR3Dl5iMKXH3-f4fHnsIGWjmTis&zoom=16&region=tw&q=韓國首爾中區明洞">
+      <iframe width="100%" height="250" frameborder="0" style="border:0" ng-src={{googleurl.src}}>
       </iframe>
       <!--
             <div class="header" style="background:url('./img/travel/t1/d1/6.jpg');">
@@ -58,7 +54,8 @@
             </div>
             <div class="desc">
               <h3>{{ schedule.date }}</h3>
-              <h4><span ng-repeat="path in schedule.location track by $index"> {{ path }}<b ng-if="schedule.location.length != ($index+1)"> > </b></span></h4>
+              <h4><span ng-repeat="path in schedule.location track by $index"> {{ path }}<b ng-if="schedule.location.length != ($index+1)">
+                    > </b></span></h4>
             </div>
           </li>
           <!--
@@ -111,7 +108,7 @@
               <div class="month">{{item.date}}</div>
             </div>
           </div>
-        <!-- <div class="actionbutton">+</div> -->
+          <!-- <div class="actionbutton">+</div> -->
         </div>
 
         <div class="timeline">
@@ -123,12 +120,17 @@
                 <h3>{{loc.name}}</h3>
                 <h4 ng-bind-html="loc.content"></h4>
 
+
+
                 <div>
                   <div class="things">
-                    <img ng-src="{{pics.pic}}" ng-repeat="pics in loc.pic_info" alt="" />
+                    <img ng-src="{{pics.pic}}" ng-repeat="pics in loc.pic_info" alt="" ng-click="openImageDetail(loc.pic_info,pics.pic)" />
                   </div>
                 </div>
-
+                <div class="things" ng-show="loc.video_id !==''">
+                  <iframe  width="100%" height="200" frameborder="0" style="border:0"  allowfullscreen="true"  ng-src="{{getUrl(loc.video_id)}}">
+                  </iframe>
+                </div>
 
 
 
@@ -169,7 +171,7 @@
                 </div>
 
                 <div class="desc" ng-if="loc.traffictime">
-                  <h3>交通工具：</h3>
+                  <h3>花費時間：</h3>
                   <h4>{{loc.traffictime}}</h4>
                 </div>
 
@@ -216,7 +218,7 @@
               weather:0
               weight:0
               -->
-          <!--
+            <!--
             <li>
               <div class="bullet"><img src="img/weather/2.png" style="width:24px;"></div>
               <div class="time">16:30 pm</div>
@@ -291,7 +293,7 @@
           </ul>
         </div>
       </div>
-<!--
+      <!--
       <div class="header">
         <div class="color-overlay">
           <div class="day-number">7</div>
@@ -303,7 +305,7 @@
        </div>
         <!-- <div class="actionbutton">+</div> -->
 
-<!--
+      <!--
       <div class="timeline">
         <ul>
           <li>
@@ -380,8 +382,8 @@
            </a>
          </div>
 -->
-         <div class="b-b b-light"></div>
-   <!--
+      <div class="b-b b-light"></div>
+      <!--
       <!-- Likers -->
       <!--
       <div class="item item-divider no-bg b-none ">Likes</div>
@@ -428,7 +430,7 @@
       -->
     </div>
   </ion-content>
-<!--
+  <!--
   <ion-footer-bar class="item-input-inset" keyboard-attach>
     <label class="item-input-wrapper">
       <input type="search" placeholder="新增一筆留言...">

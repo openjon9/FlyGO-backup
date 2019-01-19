@@ -187,7 +187,7 @@ angular.module('starter.mydramalocationlist.controllers', [])
         console.log(starttime);
         var endtime = $filter('date')($scope.Location.endtime, "HH:mm")
         console.log($scope.Location.picname);
-        var URI = "http://59.126.17.211:8082/gofly/public/api";
+        var URI = "http://59.126.17.211:8082/Danainitrip/public/api";
         var api = "/script/createLocation"
         console.log(endtime);
         console.log($stateParams.id)
@@ -253,7 +253,7 @@ angular.module('starter.mydramalocationlist.controllers', [])
       if (!$scope.Location.name == "" && !$scope.Location.pic_info.pic == "" && !$scope.Location.starttime == "" && !$scope.Location.endtime == "") {
         var starttime = $filter('date')($scope.Location.starttime, "HH:mm")
         var endtime = $filter('date')($scope.Location.endtime, "HH:mm")
-        var URI = "http://59.126.17.211:8082/gofly/public/api";
+        var URI = "http://59.126.17.211:8082/Danainitrip/public/api";
         var api = "/script/editLocation"
         console.log("地點ID:" + $scope.Location.id);
         console.log($scope.Location.weather);

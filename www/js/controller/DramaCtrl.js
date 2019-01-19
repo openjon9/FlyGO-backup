@@ -133,25 +133,6 @@ angular.module('starter.drama.controllers', [])
       });
     };
 
-    //增加地點
-    $ionicModal.fromTemplateUrl('templates/modal/addDramaLocation.html', {
-      scope: $scope,
-      animation: 'slide-in-up'
-    }).then(function (modal) {
-      $scope.modalAddLocation = modal;
-    });
-    $scope.openAddLocation = function () {
-
-      $scope.modalAddLocation.show();
-    };
-    $scope.closeAddLocation = function () {
-
-      $scope.modalAddLocation.hide();
-    };
-    $scope.doneAddLocation = function () {
-
-      $scope.modalAddLocation.hide();
-    };
 
 
 

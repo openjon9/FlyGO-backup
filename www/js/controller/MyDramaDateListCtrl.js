@@ -17,6 +17,7 @@ angular.module('starter.mydramadatelist.controllers', [])
       }, null, function (response) {
         $scope.dateList = [];
         $scope.dateList = $scope.dateList.concat(response.data.data.schedule);
+
         console.log($scope.dateList);
 
       });

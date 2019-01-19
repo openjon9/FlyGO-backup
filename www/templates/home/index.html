@@ -2,6 +2,8 @@
 
   <ion-header-bar class="bar-calm">
     <h1 class="title">首頁</h1>
+    <!-- <button class="button button-icon ion-android-funnel" ng-click="showFilterPopup()"></button> -->
+    <button class="button fa fa-search" style="font-size: 24px;" ng-click="showFilterPopup()"></button>
   </ion-header-bar>
   <ion-content class="bg-muted">
     <div class="card">
@@ -19,14 +21,14 @@
     </div>
     <div class="card">
 
-      <label type="text" class="col text-left font-bold text-base" style="color:dodgerblue;  position: fixed;">本週精選劇本</label>
+      <label type="text" class="col text-left font-bold text-base" style="color:dodgerblue;">本週精選劇本</label>
 
-      <label type="text" class="col text-right text-sm" style="color:green;">更多</label>
+      <!-- <label type="text" class="col text-right text-sm" style="color:green;">更多</label> -->
 
       <ion-scroll direction="x" class="wide-as-needed">
 
         <div class="thumb-xl padder-lg" ng-repeat="item in indexSpecial" ng-click="openDetail(item.list_id)">
-          <img ng-src="{{item.cover_pic}}" class="thumb-xl">
+          <img ng-src="{{item.cover_pic_home}}" class="thumb-xl padding-right">
           <p>{{item.place}}</p>
         </div>
 
@@ -37,13 +39,13 @@
 
     <div class="card">
 
-      <label type="text" class="col text-left font-bold text-base" style="color:dodgerblue;  position: fixed;">熱門景點</label>
+      <label type="text" class="col text-left font-bold text-base" style="color:dodgerblue;">熱門景點</label>
 
-      <label type="text" class="col text-right text-sm" style="color:green;">更多</label>
+      <!-- <label type="text" class="col text-right text-sm" style="color:green;">更多</label> -->
 
       <ion-scroll direction="x" class="wide-as-needed">
         <div class="thumb-xl padder-lg" ng-repeat="item in indexHot" ng-click="openDetail(item.list_id)">
-          <img ng-src="{{item.cover_pic}}" class="thumb-xl">
+          <img ng-src="{{item.cover_pic_home}}" class="thumb-xl padding-right">
           <p>{{item.place}}</p>
         </div>
 
@@ -54,13 +56,13 @@
 
     <div class="card">
 
-      <label type="text" class="col text-left font-bold text-base" style="color:dodgerblue;  position: fixed;">日本</label>
+      <label type="text" class="col text-left font-bold text-base" style="color:dodgerblue;">日本</label>
 
-      <label type="text" class="col text-right text-sm" style="color:green;">更多</label>
+      <!-- <label type="text" class="col text-right text-sm" style="color:green;">更多</label> -->
 
       <ion-scroll direction="x" class="wide-as-needed">
         <div class="thumb-xl padder-lg" ng-repeat="item in indexJP" ng-click="openDetail(item.list_id)">
-          <img ng-src="{{item.cover_pic}}" class="thumb-xl">
+          <img ng-src="{{item.cover_pic_home}}" class="thumb-xl padding-right">
           <p>{{item.place}}</p>
         </div>
 
@@ -70,13 +72,13 @@
 
     <div class="card">
 
-      <label type="text" class="col text-left font-bold text-base" style="color:dodgerblue;  position: fixed;">韓國</label>
+      <label type="text" class="col text-left font-bold text-base" style="color:dodgerblue;">韓國</label>
 
-      <label type="text" class="col text-right text-sm" style="color:green;">更多</label>
+      <!-- <label type="text" class="col text-right text-sm" style="color:green;">更多</label> -->
 
       <ion-scroll direction="x" class="wide-as-needed">
         <div class="thumb-xl padder-lg" ng-repeat="item in indexKR" ng-click="openDetail(item.list_id)">
-          <img ng-src="{{item.cover_pic}}" class="thumb-xl">
+          <img ng-src="{{item.cover_pic_home}}" class="thumb-xl padding-right">
           <p>{{item.place}}</p>
         </div>
       </ion-scroll>

@@ -112,12 +112,12 @@
 .timeline-block .timeline .desc {
     width: 60%; }
 .timeline-block .timeline h3 {
-    font-size: 0.9em;
+    font-size: 1.2em;
     font-weight: 400;
     margin: 0; }
 .timeline-block .timeline h4 {
     margin: 0;
-    font-size: 0.7em;
+    font-size: 1.0em;
     font-weight: 400;
     color: #808080; }
 .timeline-block .timeline .people img {
@@ -203,13 +203,13 @@
     font-size: 14px;
     text-align: center;
     padding: 0px;
-    margin: 0px;
-    position: absolute;
-    width: 80%;
-    left: 10%;
+    margin: 50% 0px 50px;
+    position: fixed;
+    width: 100%;
+    /* left: 10%; */
     top: -webkit-calc(50% - 20px);
     top: calc(50% - 20px);
-    height: 40px;
+    /* height: 40px; */
     display: -webkit-box;
     display: -moz-box;
     display: box;
@@ -409,16 +409,63 @@
     left: 0 !important;
   }
   .fullscreen-image {
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 70%;
+    max-height: 80vh;
     bottom: 0;
     left: 0;
-    margin: auto;
+    margin: 20% 15%;
     overflow: auto;
-    position: fixed;
+    /* position: fixed; */
     right: 0;
     top: 0;
   }
+  .slidecenter{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #000;
+  }
+  .slidecenter img {
+    margin: 0;
+    margin-bottom: 1rem;
+    width: 100%;
+    max-width: 100%;
+    max-height: 70vh;
+  }
+  .slidecenter span {
+    width: 100%;
+    color: #FFF;
+    padding: 0 5%;
+  }
+
+  /* 個人大頭照 */
+  .profile-pic, .profile-cover {
+    /* background-image: url('img/adam.png'); */
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .profile-pic > .ion-edit {
+    width: 30px;
+    height: 30px;
+    background-color: #EEE;
+    border-radius: 50%;
+    border: 1px solid #FFF;
+    position: absolute;
+    top: unset;
+    bottom: 0;
+    right: 0;
+  }
+  .profile-cover > .ion-edit {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 5px;
+    right: 8px;
+  }
+
   @media (max-width: 679px) {
     .active .modal-backdrop-bg {
       opacity: .5;
